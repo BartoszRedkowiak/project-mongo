@@ -14,6 +14,8 @@
 </head>
 <body>
 
+<a href="/">Strona główna TEMP</a>
+
 <table border="2">
     <thead>
     <tr>

@@ -51,8 +51,7 @@ public class MarkerController {
     @GetMapping("/edit/{id}")
     public String edit(Model model,
                        @PathVariable long id) {
-        Marker marker = markerService.findOne(id);
-        model.addAttribute("marker", marker);
+        model.addAttribute("marker", markerService.findOne(id));
         return "user/marker";
     }
 
@@ -61,6 +60,14 @@ public class MarkerController {
         markerService.update(marker);
         return "redirect:../list";
     }
+
+    @GetMapping("/details/{id}")
+    public String details (@PathVariable long id,
+                           Model model){
+        model.addAttribute("marker", markerService.findOne(id));
+        return "markerDetails";
+    }
+
 
     @ModelAttribute("categories")
     public List<Category> categories(){ return categoryService.findAll();  }

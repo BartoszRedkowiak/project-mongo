@@ -7,7 +7,7 @@
         // Map options
         var options = {
             zoom: 17,
-            center: {lat: ${marker.lat == 0? 52.237 : marker.lat}, lng: ${marker.lng == 0 ? 21.017 : marker.lat}}
+            center: {lat: ${marker.lat == 0? 52.237 : marker.lat}, lng: ${marker.lng == 0 ? 21.017 : marker.lng}}
         };
         // New map
         var map = new google.maps.Map(document.getElementById('map'), options);
