@@ -37,38 +37,6 @@
             addMarker(markers[i]);
         }
 
-        // Listen for click on map - set newMarker position
-        google.maps.event.addListener(map, 'click', function (event) {
-            // put position inside form
-            $('#formLat').val(event.latLng.lat());
-            $('#formLng').val(event.latLng.lng());
-            //update location of newMarker
-            newMarker.setPosition(event.latLng);
-        });
-
-        //on-click marker object with info window
-        var newMarker = new google.maps.Marker({
-            position: null,
-            map:map,
-            content: '<h5>Dodaj nowy spocik</h5>'+
-                '<br><button id="newBtn">Dodaj</button>'
-        });
-        newMarker.setDraggable(true);
-        if(newMarker.content){
-            var newInfoWindow = new google.maps.InfoWindow({
-                content:newMarker.content
-            });
-
-            newMarker.addListener('click', function(){
-                newInfoWindow.open(map, newMarker);
-            });
-        }
-
-        // Add New Marker Function
-        function setNewMarker(props){
-            newMarker.setPosition(props);
-        }
-
         // Add Marker Function
         function addMarker(props){
             var marker = new google.maps.Marker({
