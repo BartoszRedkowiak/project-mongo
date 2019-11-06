@@ -17,12 +17,12 @@
 <%--    <script src="/../../resources/js/init.js" type="text/javascript"></script>--%>
 </head>
 <body>
-<jsp:include page="topbar.jsp"/>
-<jsp:include page="sidebar.jsp"/>
+<jsp:include page="elemTopbar.jsp"/>
+<jsp:include page="elemSidebar.jsp"/>
 
 <div class="content">
 
-<jsp:include page="map.jsp"/>
+<jsp:include page="elemMap.jsp"/>
 
 </div>
 
