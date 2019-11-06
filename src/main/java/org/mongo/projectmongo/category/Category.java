@@ -19,6 +19,9 @@ public class Category {
     @ManyToMany(mappedBy = "categories")
     private List<Marker> markers;
 
+    @ManyToOne
+    private Category parent;
+
     public long getId() {
         return id;
     }
@@ -41,6 +44,10 @@ public class Category {
 
     public void setMarkers(List<Marker> markers) {
         this.markers = markers;
+    }
+
+    public String getFormName(){
+        return parent.name + ": " + name;
     }
 
 }

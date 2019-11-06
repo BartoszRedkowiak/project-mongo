@@ -42,9 +42,7 @@
         </label>
 
         <label>Category:
-            <form:select path="categories">
-            <form:options items="${categories}" itemLabel="name" itemValue="id"/>
-            </form:select>
+            <form:select path="categories" items="${categories}" itemLabel="name" itemValue="id"/>
         </label>
 
 

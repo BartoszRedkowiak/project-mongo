@@ -1,10 +1,13 @@
 package org.mongo.projectmongo.marker;
 
+import org.mongo.projectmongo.category.Category;
 import org.mongo.projectmongo.category.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/markers")
@@ -28,7 +31,6 @@ public class MarkerController {
     @GetMapping("/add")
     public String add(Model model) {
         model.addAttribute("marker", new Marker());
-        model.addAttribute("categories", categoryService.findAll());
         return "user/marker";
     }
 
@@ -59,5 +61,8 @@ public class MarkerController {
         markerService.update(marker);
         return "redirect:../list";
     }
+
+    @ModelAttribute("categories")
+    public List<Category> categories(){ return categoryService.findAll();  }
 
 }
