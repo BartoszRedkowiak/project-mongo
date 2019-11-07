@@ -30,10 +30,10 @@ public class HomeController {
     }
 
     @ModelAttribute("markers")
-    public List<Marker> markers(){ return markerService.findAll();}
+    public List<Marker> markers(){ return markerService.getAllVisible();}
 
     @ModelAttribute("categories")
-    public List<Category> categories(){ return categoryService.findAll();}
+    public List<Category> categories(){ return categoryService.getAll();}
 
 
 

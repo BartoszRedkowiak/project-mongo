@@ -3,6 +3,7 @@ package org.mongo.projectmongo.marker;
 
 
 import org.mongo.projectmongo.category.Category;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -34,6 +35,8 @@ public class Marker {
 
     private LocalDateTime updatedOn;
 
+    private boolean visible = false;
+
     @PrePersist
     public void prePersist(){
         createdOn = LocalDateTime.now();
@@ -42,6 +45,22 @@ public class Marker {
     @PreUpdate
     public void preUpdate(){
         updatedOn = LocalDateTime.now();
+    }
+
+    public LocalDateTime getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(LocalDateTime createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    public LocalDateTime getUpdatedOn() {
+        return updatedOn;
+    }
+
+    public void setUpdatedOn(LocalDateTime updatedOn) {
+        this.updatedOn = updatedOn;
     }
 
     public long getId() {

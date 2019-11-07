@@ -44,7 +44,7 @@
         <label>Category:
             <form:select path="categories" items="${categories}" itemLabel="name" itemValue="id"/>
         </label>
-
+            <form:hidden path="createdOn"/>
 
         <input type="submit" value="Zapisz">
     </form:form>

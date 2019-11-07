@@ -24,11 +24,11 @@ public class CategoryService {
         categoryRepository.save(category);
     }
 
-    public Category findOne(long id) {
+    public Category getOne(long id) {
         return categoryRepository.findById(id).orElse(null);
     }
 
-    public List<Category> findAll() {
+    public List<Category> getAll() {
         return categoryRepository.findAll();
     }
 

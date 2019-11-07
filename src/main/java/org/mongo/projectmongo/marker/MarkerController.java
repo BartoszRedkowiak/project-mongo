@@ -24,7 +24,7 @@ public class MarkerController {
 
     @GetMapping("/list")
     public String list(Model model) {
-        model.addAttribute("markers", markerService.findAll());
+        model.addAttribute("markers", markerService.getAll());
         return "viewMarkerList";
     }
 
@@ -51,7 +51,7 @@ public class MarkerController {
     @GetMapping("/edit/{id}")
     public String edit(Model model,
                        @PathVariable long id) {
-        model.addAttribute("marker", markerService.findOne(id));
+        model.addAttribute("marker", markerService.getOne(id));
         return "viewMarker";
     }
 
@@ -64,12 +64,11 @@ public class MarkerController {
     @GetMapping("/details/{id}")
     public String details (@PathVariable long id,
                            Model model){
-        model.addAttribute("marker", markerService.findOne(id));
+        model.addAttribute("marker", markerService.getOne(id));
         return "viewMarkerDetails";
     }
 
-
     @ModelAttribute("categories")
-    public List<Category> categories(){ return categoryService.findAll();  }
+    public List<Category> categories(){ return categoryService.getAll();  }
 
 }

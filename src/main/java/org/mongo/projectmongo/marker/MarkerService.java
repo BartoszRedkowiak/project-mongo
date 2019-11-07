@@ -21,12 +21,16 @@ public class MarkerService {
         markerRepository.save(marker);
     }
 
-    public Marker findOne(long id) {
+    public Marker getOne(long id) {
         return markerRepository.findById(id).orElse(null);
     }
 
-    public List<Marker> findAll() {
+    public List<Marker> getAll() {
         return markerRepository.findAll();
+    }
+
+    public List<Marker> getAllVisible() {
+        return markerRepository.findAllByVisibleTrue();
     }
 
     public void update(Marker marker) {
