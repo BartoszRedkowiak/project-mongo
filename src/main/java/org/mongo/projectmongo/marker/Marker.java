@@ -5,6 +5,7 @@ package org.mongo.projectmongo.marker;
 import org.mongo.projectmongo.category.Category;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -28,6 +29,20 @@ public class Marker {
             joinColumns = @JoinColumn(name = "marker_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     private List<Category> categories;
+
+    private LocalDateTime createdOn;
+
+    private LocalDateTime updatedOn;
+
+    @PrePersist
+    public void prePersist(){
+        createdOn = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    public void preUpdate(){
+        updatedOn = LocalDateTime.now();
+    }
 
     public long getId() {
         return id;
