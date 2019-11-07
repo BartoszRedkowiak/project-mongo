@@ -1,5 +1,6 @@
 package org.mongo.projectmongo.user;
 
+import org.mongo.projectmongo.category.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,16 +14,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserController {
 
     private final UserService userService;
+    private final CategoryService categoryService;
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, CategoryService categoryService) {
         this.userService = userService;
+        this.categoryService = categoryService;
     }
 
     @GetMapping("/profile")
     public String userProfile(Model model){
         //TODO zamienić raw input
         model.addAttribute("user", userService.getOne(1l));
-        return "viewUser";
+        return "viewUserProfile";
     }
 
     @GetMapping("/list")
@@ -34,13 +37,14 @@ public class UserController {
     @GetMapping("/add")
     public String add(Model model){
         model.addAttribute("user", new User());
+        model.addAttribute("mainCategories", categoryService.getMainCategories());
         return "viewUser";
     }
 
     @PostMapping("/add")
     public String add(User user){
         userService.save(user);
-        return "redirect:../profile";
+        return "redirect:/profile";
     }
 
     @GetMapping("/edit/{id}")

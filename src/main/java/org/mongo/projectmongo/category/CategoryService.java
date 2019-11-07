@@ -16,6 +16,7 @@ public class CategoryService implements ServiceInterface<Category> {
     public CategoryService(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
+
     @Override
     public void save(Category category) {
         categoryRepository.save(category);
@@ -36,5 +37,8 @@ public class CategoryService implements ServiceInterface<Category> {
     public void delete(long id) {
         categoryRepository.deleteById(id);
     }
+
+    public List<Category> getMainCategories(){ return categoryRepository.findAllByParentNull(); }
+
 
 }

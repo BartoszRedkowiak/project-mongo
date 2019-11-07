@@ -19,16 +19,16 @@
 
         // Array of markers from database
         var markers = [
-            <c:forEach items="${markers}" var="marker" varStatus="index">
+            <c:forEach items="${markers}" var="user" varStatus="index">
             {
-                position: {lat: ${marker.lat}, lng:${marker.lng}},
-                content: '<h5>${marker.name}</h5>' +
-                    '<br>id: ${marker.id}' +
-                    '<br>lat: ${marker.lat}' +
-                    '<br>lng: ${marker.lng}' +
-                    '<br><button onclick="markerRedirect(${marker.id}, \'details\')" class="detailsBtn">Szczegóły</button>' +
-                    '<br><button onclick="markerRedirect(${marker.id}, \'edit\')" class="editBtn">Zaproponuj zmianę</button>' +
-                    '<br><button onclick="markerRedirect(${marker.id}, \'delete\')" class="deleteBtn">Usuń</button>'
+                position: {lat: ${user.lat}, lng:${user.lng}},
+                content: '<h5>${user.name}</h5>' +
+                    '<br>id: ${user.id}' +
+                    '<br>lat: ${user.lat}' +
+                    '<br>lng: ${user.lng}' +
+                    '<br><button onclick="markerRedirect(${user.id}, \'details\')" class="detailsBtn">Szczegóły</button>' +
+                    '<br><button onclick="markerRedirect(${user.id}, \'edit\')" class="editBtn">Zaproponuj zmianę</button>' +
+                    '<br><button onclick="markerRedirect(${user.id}, \'delete\')" class="deleteBtn">Usuń</button>'
             },
             </c:forEach>
         ];

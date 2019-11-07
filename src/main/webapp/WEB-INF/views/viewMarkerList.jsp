@@ -29,19 +29,19 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${markers}" var="marker" varStatus="index">
+    <c:forEach items="${markers}" var="user" varStatus="index">
         <tr>
-            <td>${marker.id}</td>
-            <td>${marker.name}</td>
-            <td>${marker.lat}</td>
-            <td>${marker.lng}</td>
-            <td>${marker.description}</td>
+            <td>${user.id}</td>
+            <td>${user.name}</td>
+            <td>${user.lat}</td>
+            <td>${user.lng}</td>
+            <td>${user.description}</td>
             <td></td>
             <td>
-                <a href="/markers/edit/${marker.id}">Edytuj dane</a><br>
+                <a href="/markers/edit/${user.id}">Edytuj dane</a><br>
                 <a>Dodaj do konkursu</a><br>
                 <a>Zmień widoczność</a><br>
-                <a href="#" onclick="confirmDelete(${marker.id})">Delete</a>
+                <a href="#" onclick="confirmDelete(${user.id})">Delete</a>
             </td>
         </tr>
     </c:forEach>
