@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Project Mongo</title>
+    <jsp:include page="elemHeadLinks.jsp"/>
 </head>
 <body>
 

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Spot List</title>
+    <jsp:include page="elemHeadLinks.jsp"/>
     <script>
         function confirmDelete(id) {
             if (confirm("Potwierdź usunięcie spotu o id: " + id)) {

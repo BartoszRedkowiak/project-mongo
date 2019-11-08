@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Title</title>
+    <jsp:include page="elemHeadLinks.jsp"/>
 </head>
 <body>
 user profile

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Spot Details</title>
+    <jsp:include page="elemHeadLinks.jsp"/>
 </head>
 <body>
 
