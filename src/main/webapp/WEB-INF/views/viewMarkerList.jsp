@@ -24,27 +24,22 @@
             <tr>
                 <th>Id</th>
                 <th>Nazwa</th>
-                <th>Lat</th>
-                <th>Lng</th>
                 <th>Opis</th>
                 <th>Widoczność</th>
                 <th>Akcje</th>
             </tr>
             </thead>
             <tbody class="table-hover">
-            <c:forEach items="${markers}" var="user" varStatus="index">
+            <c:forEach items="${markers}" var="marker" varStatus="index">
                 <tr>
-                    <td>${user.id}</td>
-                    <td>${user.name}</td>
-                    <td>${user.lat}</td>
-                    <td>${user.lng}</td>
-                    <td>${user.description}</td>
-                    <td></td>
+                    <td>${marker.id}</td>
+                    <td>${marker.name}</td>
+                    <td>${marker.description}</td>
+                    <td>${marker.visible == true? 'TAK' : 'NIE'}</td>
                     <td>
-                        <a class="btn btn-primary" href="/markers/toggle/{id}">Zmień widoczność</a><br>
-                        <a class="btn-warning" href="/markers/edit/${user.id}">Edytuj dane</a><br>
-                        <a class="btn" href="#" >Dodaj do konkursu</a><br>
-                        <a class="btn btn-danger" href="#" onclick="confirmDelete(${user.id})">Delete</a>
+                        <a class="btn btn-outline-dark" href="/markers/toggle/${marker.id}">Toggle</a><br>
+                        <a class="btn btn-outline-warning" href="/markers/edit/${marker.id}">Edytuj dane</a><br>
+                        <a class="btn btn-outline-danger" href="#" onclick="confirmDelete(${marker.id})">Delete</a>
                     </td>
                 </tr>
             </c:forEach>

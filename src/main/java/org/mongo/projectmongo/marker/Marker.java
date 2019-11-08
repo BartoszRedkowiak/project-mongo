@@ -38,7 +38,7 @@ public class Marker {
 
     private LocalDateTime updatedOn;
 
-    private boolean visible = false;
+    private Boolean visible = false;
 
     @PrePersist
     public void prePersist(){
@@ -112,5 +112,13 @@ public class Marker {
 
     public void setCategories(List<Category> categories) {
         this.categories = categories;
+    }
+
+    public Boolean getVisible() {
+        return visible;
+    }
+
+    public void setVisible(Boolean visible) {
+        this.visible = visible;
     }
 }

@@ -68,6 +68,14 @@ public class MarkerController {
         return "viewMarkerDetails";
     }
 
+    @GetMapping("/toggle/{id}")
+    public String toggleVisible(@PathVariable Long id){
+        Marker marker = markerService.getOne(id);
+        marker.setVisible(!marker.getVisible());
+        markerService.update(marker);
+        return "redirect:../list";
+    }
+
     @ModelAttribute("categories")
     public List<Category> categories(){ return categoryService.getSubCategories();  }
 

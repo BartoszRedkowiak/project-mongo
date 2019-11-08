@@ -22,15 +22,15 @@
             </tr>
             </thead>
             <tbody class="table-hover">
-            <c:forEach items="${users}" var="user" varStatus="index">
+            <c:forEach items="${users}" var="marker" varStatus="index">
                 <tr>
-                    <td>${user.id}</td>
-                    <td>${user.firstName}</td>
-                    <td>${user.lastName}</td>
-                    <td>${user.email}</td>
+                    <td>${marker.id}</td>
+                    <td>${marker.firstName}</td>
+                    <td>${marker.lastName}</td>
+                    <td>${marker.email}</td>
                     <td>
-                        <button class="btn btn-warning" onclick="window.location.href = '/users/edit/${user.id}'">Edytuj</button>
-                        <button class="btn btn-danger" onclick="window.location.href = '/users/delete/${user.id}'">Usuń</button>
+                        <button class="btn btn-warning" onclick="window.location.href = '/users/edit/${marker.id}'">Edytuj</button>
+                        <button class="btn btn-danger" onclick="window.location.href = '/users/delete/${marker.id}'">Usuń</button>
                     </td>
                 </tr>
             </c:forEach>
