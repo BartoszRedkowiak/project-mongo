@@ -7,35 +7,37 @@
 </head>
 <body>
 
-<a href="/">Strona główna TEMP</a>
-
-<table border="2">
-    <thead>
-    <tr>
-        <th>Id</th>
-        <th>Imię</th>
-        <th>Nazwisko</th>
-        <th>Email</th>
-        <th>Akcje</th>
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach items="${users}" var="user" varStatus="index">
-        <tr>
-            <td>${user.id}</td>
-            <td>${user.firstName}</td>
-            <td>${user.lastName}</td>
-            <td>${user.email}</td>
-            <td>
-                <button onclick="window.location.href = '/users/edit/${user.id}'">Edytuj</button>
-                <button onclick="window.location.href = '/users/delete/${user.id}'">Usuń</button>
-            </td>
-        </tr>
-    </c:forEach>
-
-    </tbody>
-</table>
-
+<jsp:include page="elemNavbar.jsp"/>
+<div lass="container m-1">
+    <header>Lista użytkowników</header>
+    <div class="card mt-2">
+        <table class="table-sm table-hover">
+            <thead class="thead-dark">
+            <tr>
+                <th>Id</th>
+                <th>Imię</th>
+                <th>Nazwisko</th>
+                <th>Email</th>
+                <th>Akcje</th>
+            </tr>
+            </thead>
+            <tbody class="table-hover">
+            <c:forEach items="${users}" var="user" varStatus="index">
+                <tr>
+                    <td>${user.id}</td>
+                    <td>${user.firstName}</td>
+                    <td>${user.lastName}</td>
+                    <td>${user.email}</td>
+                    <td>
+                        <button class="btn btn-warning" onclick="window.location.href = '/users/edit/${user.id}'">Edytuj</button>
+                        <button class="btn btn-danger" onclick="window.location.href = '/users/delete/${user.id}'">Usuń</button>
+                    </td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </div>
+</div>
 
 
 </body>

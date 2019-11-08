@@ -5,6 +5,8 @@
     <jsp:include page="elemHeadLinks.jsp"/>
 </head>
 <body>
-user profile
+
+<jsp:include page="elemNavbar.jsp"/>
+
 </body>
 </html>

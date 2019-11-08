@@ -14,41 +14,44 @@
 </head>
 <body>
 
-<a href="/">Strona główna TEMP</a>
+<jsp:include page="elemNavbar.jsp"/>
 
-<table border="2">
-    <thead>
-    <tr>
-        <th>Id</th>
-        <th>Nazwa</th>
-        <th>Lat</th>
-        <th>Lng</th>
-        <th>Opis</th>
-        <th>Widoczność</th>
-        <th>Akcje</th>
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach items="${markers}" var="user" varStatus="index">
-        <tr>
-            <td>${user.id}</td>
-            <td>${user.name}</td>
-            <td>${user.lat}</td>
-            <td>${user.lng}</td>
-            <td>${user.description}</td>
-            <td></td>
-            <td>
-                <a href="/markers/edit/${user.id}">Edytuj dane</a><br>
-                <a>Dodaj do konkursu</a><br>
-                <a>Zmień widoczność</a><br>
-                <a href="#" onclick="confirmDelete(${user.id})">Delete</a>
-            </td>
-        </tr>
-    </c:forEach>
-
-    </tbody>
-</table>
-
+<div class="container m-1">
+    <header>Lista markerów</header>
+    <div class="card mt-2">
+        <table class="table-sm table-hover">
+            <thead class="thead-dark">
+            <tr>
+                <th>Id</th>
+                <th>Nazwa</th>
+                <th>Lat</th>
+                <th>Lng</th>
+                <th>Opis</th>
+                <th>Widoczność</th>
+                <th>Akcje</th>
+            </tr>
+            </thead>
+            <tbody class="table-hover">
+            <c:forEach items="${markers}" var="user" varStatus="index">
+                <tr>
+                    <td>${user.id}</td>
+                    <td>${user.name}</td>
+                    <td>${user.lat}</td>
+                    <td>${user.lng}</td>
+                    <td>${user.description}</td>
+                    <td></td>
+                    <td>
+                        <a class="btn btn-primary" href="/markers/toggle/{id}">Zmień widoczność</a><br>
+                        <a class="btn-warning" href="/markers/edit/${user.id}">Edytuj dane</a><br>
+                        <a class="btn" href="#" >Dodaj do konkursu</a><br>
+                        <a class="btn btn-danger" href="#" onclick="confirmDelete(${user.id})">Delete</a>
+                    </td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </div>
+</div>
 
 </body>
 </html>

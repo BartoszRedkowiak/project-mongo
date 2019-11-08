@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<a href="/">Strona główna TEMP</a>
+<jsp:include page="elemNavbar.jsp"/>
 
 <table border="2">
     <thead>

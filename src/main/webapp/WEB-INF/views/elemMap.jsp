@@ -66,7 +66,7 @@
     }
 
 </script>
-<div id="map">
+<div class="container-fluid" id="map">
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAVcoNM2MuCYiuF08TgYY-D8kQhD08MA8&callback=initMap">
     </script>
