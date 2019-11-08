@@ -13,7 +13,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String firstName;
     private String lastName;
@@ -26,7 +26,7 @@ public class User {
 
     @Column(nullable = false)
 
-    @OneToMany
+    @ManyToMany
     private List<Category> sportTypes;
 
     private LocalDateTime registrationDate;
@@ -36,11 +36,11 @@ public class User {
         registrationDate = LocalDateTime.now();
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -26,7 +26,10 @@
             <td>${user.firstName}</td>
             <td>${user.lastName}</td>
             <td>${user.email}</td>
-            <td>Placeholder-buttony</td>
+            <td>
+                <button onclick="window.location.href = '/users/edit/${user.id}'">Edytuj</button>
+                <button onclick="window.location.href = '/users/delete/${user.id}'">Usuń</button>
+            </td>
         </tr>
     </c:forEach>
 

@@ -43,14 +43,14 @@ public class MarkerController {
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable long id) {
+    public String delete(@PathVariable Long id) {
         markerService.delete(id);
         return "redirect:../list";
     }
 
     @GetMapping("/edit/{id}")
     public String edit(Model model,
-                       @PathVariable long id) {
+                       @PathVariable Long id) {
         model.addAttribute("marker", markerService.getOne(id));
         return "viewMarker";
     }
@@ -62,7 +62,7 @@ public class MarkerController {
     }
 
     @GetMapping("/details/{id}")
-    public String details (@PathVariable long id,
+    public String details (@PathVariable Long id,
                            Model model){
         model.addAttribute("marker", markerService.getOne(id));
         return "viewMarkerDetails";

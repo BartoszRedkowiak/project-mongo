@@ -44,11 +44,11 @@ public class UserController {
     @PostMapping("/add")
     public String add(User user){
         userService.save(user);
-        return "redirect:/profile";
+        return "redirect:profile";
     }
 
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable long id,
+    public String edit(@PathVariable Long id,
                        Model model){
         model.addAttribute("user", userService.getOne(id));
         return "viewUser";
@@ -61,7 +61,7 @@ public class UserController {
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable long id){
+    public String delete(@PathVariable Long id){
         userService.delete(id);
         return "redirect:../list";
     }
