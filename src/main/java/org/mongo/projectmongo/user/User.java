@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
+@Table(name="users")
 public class User {
 
     @Id
@@ -24,6 +25,7 @@ public class User {
     private String password;
 
     @Column(nullable = false)
+
     @OneToMany
     private List<Category> sportTypes;
 

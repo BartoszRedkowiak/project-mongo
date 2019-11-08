@@ -8,4 +8,6 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
 
     public List<Category> findAllByParentNull();
 
+    public List<Category> findAllByParentNotNull();
+
 }

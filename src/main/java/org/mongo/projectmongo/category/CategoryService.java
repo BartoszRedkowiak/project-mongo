@@ -40,5 +40,7 @@ public class CategoryService implements ServiceInterface<Category> {
 
     public List<Category> getMainCategories(){ return categoryRepository.findAllByParentNull(); }
 
+    public List<Category> getSubCategories(){ return categoryRepository.findAllByParentNotNull(); }
+
 
 }

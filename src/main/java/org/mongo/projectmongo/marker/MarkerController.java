@@ -69,6 +69,6 @@ public class MarkerController {
     }
 
     @ModelAttribute("categories")
-    public List<Category> categories(){ return categoryService.getAll();  }
+    public List<Category> categories(){ return categoryService.getSubCategories();  }
 
 }
