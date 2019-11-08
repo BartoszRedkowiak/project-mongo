@@ -9,28 +9,18 @@
 
 <jsp:include page="elemNavbar.jsp"/>
 
+<div>
+${marker.name}
+</div>
+
 <table border="2">
-    <thead>
-    <tr>
-        <th>Nazwa</th>
-        <th>Opis</th>
-        <th>Kategorie</th>
-    </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>${marker.name}</td>
-            <td>${marker.description}</td>
-            <td>
-                <ul>
-            <c:forEach items="${marker.categories}" var="category">
-                    <li>${category.name}</li>
-            </c:forEach>
-                </ul>
-            </td>
-        </tr>
-    </tbody>
+    <tr>Dodane przez XXX dnia XXX</tr>
+    <tr>${marker.description}</tr>
+    <tr>kategorie</tr>
 </table>
+
+
+Komentarze
 
 <div>
     <p>Komentarze</p>
