@@ -17,10 +17,13 @@ public class Marker {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private double lat;
 
+    @Column(nullable = false)
     private double lng;
 
+    @Column(nullable = false)
     private String name;
 
     private String description;
