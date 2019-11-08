@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<%--<div class="container">--%>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
         <a class="navbar-brand js-scroll-trigger" href="/">MonGo</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
                 aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,10 +34,9 @@
                     <a class="nav-link" href="#">Logowanie</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Rejestracja</a>
+                    <a class="nav-link" href="/users/register">Rejestracja</a>
                 </li>
 
             </ul>
         </div>
     </nav>
-<%--</div>--%>

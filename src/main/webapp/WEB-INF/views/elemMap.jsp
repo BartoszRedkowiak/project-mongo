@@ -23,12 +23,8 @@
             {
                 position: {lat: ${marker.lat}, lng:${marker.lng}},
                 content: '<h5>${marker.name}</h5>' +
-                    '<br>id: ${marker.id}' +
-                    '<br>lat: ${marker.lat}' +
-                    '<br>lng: ${marker.lng}' +
-                    '<br><button onclick="markerRedirect(${marker.id}, \'details\')" class="detailsBtn">Szczegóły</button>' +
-                    '<br><button onclick="markerRedirect(${marker.id}, \'edit\')" class="editBtn">Zaproponuj zmianę</button>' +
-                    '<br><button onclick="markerRedirect(${marker.id}, \'delete\')" class="deleteBtn">Usuń</button>'
+                    '<button class="btn btn-dark btn-sm btn-block mt-1" onclick="markerRedirect(${marker.id}, \'details\')" class="detailsBtn">Szczegóły</button>' +
+                    '<button class="btn btn-dark btn-sm btn-block mt-1" onclick="markerRedirect(${marker.id}, \'edit\')" class="editBtn">Edytuj</button>'
             },
             </c:forEach>
         ];

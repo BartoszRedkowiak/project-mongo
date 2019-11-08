@@ -8,7 +8,7 @@
 <body>
 
 <jsp:include page="elemNavbar.jsp"/>
-<div lass="container m-1">
+<div class="container m-1">
     <header>Lista użytkowników</header>
     <div class="card mt-2">
         <table class="table-sm table-hover">

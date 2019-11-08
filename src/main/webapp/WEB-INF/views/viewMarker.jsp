@@ -23,19 +23,16 @@
         $('<div/>').addClass('centerMarker').appendTo(map.getDiv());
     }
 </script>
-<div class="container-fluid">
 <jsp:include page="elemNavbar.jsp"/>
-
-    <header>${empty marker.id ? 'Add Spot' : 'Edit Spot'}</header>
-
-<div class="container-fluid" id="map">
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAVcoNM2MuCYiuF08TgYY-D8kQhD08MA8&callback=initMap">
-    </script>
-</div>
 <div class="container-fluid">
+    <div class="card mt-2 mb-2">
+        <header><h3>${empty marker.id ? 'Dodaj spot' : 'Edytuj spot'}</h3></header>
+        <div class="container-fluid" id="map">
+            <script async defer
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAVcoNM2MuCYiuF08TgYY-D8kQhD08MA8&callback=initMap">
+            </script>
+        </div>
 
-    <div class="card mt-4 mb-2">
         <div class="card-body">
 
             <form:form method="post" modelAttribute="marker">
@@ -49,7 +46,8 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="formCategories">Category</label>
-                        <form:select path="categories" items="${categories}" itemLabel="name" itemValue="id" cssClass="form-control" id="formCategories" />
+                        <form:select path="categories" items="${categories}" itemLabel="name" itemValue="id"
+                                     cssClass="form-control" id="formCategories"/>
                     </div>
                 </div>
                 <div class="row">
@@ -67,10 +65,6 @@
         </div>
     </div>
 </div>
-</div>
-
-
-
 
 </body>
 </html>

@@ -37,9 +37,11 @@
                     <td>${marker.description}</td>
                     <td>${marker.visible == true? 'TAK' : 'NIE'}</td>
                     <td>
-                        <a class="btn btn-outline-dark" href="/markers/toggle/${marker.id}">Toggle</a><br>
-                        <a class="btn btn-outline-warning" href="/markers/edit/${marker.id}">Edytuj dane</a><br>
-                        <a class="btn btn-outline-danger" href="#" onclick="confirmDelete(${marker.id})">Delete</a>
+                        <div class="row">
+                        <a class="btn btn-dark" href="/markers/toggle/${marker.id}">Toggle</a><br>
+                        <a class="btn btn-warning" href="/markers/edit/${marker.id}">Edytuj</a><br>
+                        <a class="btn btn-danger" href="#" onclick="confirmDelete(${marker.id})">Usuń</a>
+                        </div>
                     </td>
                 </tr>
             </c:forEach>
