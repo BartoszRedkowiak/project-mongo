@@ -2,6 +2,7 @@ package org.mongo.projectmongo.user;
 
 import org.hibernate.validator.constraints.UniqueElements;
 import org.mongo.projectmongo.category.Category;
+import org.mongo.projectmongo.review.Review;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -30,6 +31,9 @@ public class User {
     private List<Category> sportTypes;
 
     private LocalDateTime registrationDate;
+
+    @OneToMany(mappedBy = "user")
+    private List<Review> reviews;
 
     @PrePersist
     public void prePersist(){

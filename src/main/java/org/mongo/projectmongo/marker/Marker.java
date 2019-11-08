@@ -3,6 +3,7 @@ package org.mongo.projectmongo.marker;
 
 
 import org.mongo.projectmongo.category.Category;
+import org.mongo.projectmongo.review.Review;
 import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import javax.persistence.*;
@@ -39,6 +40,9 @@ public class Marker {
     private LocalDateTime updatedOn;
 
     private Boolean visible = false;
+
+    @OneToMany(mappedBy = "marker")
+    private List<Review> reviews;
 
     @PrePersist
     public void prePersist(){
