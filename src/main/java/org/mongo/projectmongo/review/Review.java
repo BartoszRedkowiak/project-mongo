@@ -14,9 +14,9 @@ public class Review {
     private Long id;
 
     @Column(nullable = false)
-    private Integer rating;
+    private Float rating;
 
-    private String content;
+    private String comment;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -25,4 +25,44 @@ public class Review {
     @ManyToOne
     @JoinColumn(name = "marker_id")
     private Marker marker;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Float getRating() {
+        return rating;
+    }
+
+    public void setRating(Float rating) {
+        this.rating = rating;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Marker getMarker() {
+        return marker;
+    }
+
+    public void setMarker(Marker marker) {
+        this.marker = marker;
+    }
 }

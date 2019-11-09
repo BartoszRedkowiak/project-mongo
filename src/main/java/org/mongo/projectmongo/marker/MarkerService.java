@@ -1,5 +1,6 @@
 package org.mongo.projectmongo.marker;
 
+import org.hibernate.Hibernate;
 import org.mongo.projectmongo.utils.ServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

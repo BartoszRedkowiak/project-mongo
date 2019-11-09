@@ -2,11 +2,15 @@ package org.mongo.projectmongo.marker;
 
 import org.mongo.projectmongo.category.Category;
 import org.mongo.projectmongo.category.CategoryService;
+import org.mongo.projectmongo.review.Review;
+import org.mongo.projectmongo.review.ReviewService;
+import org.mongo.projectmongo.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -15,11 +19,15 @@ public class MarkerController {
 
     private final MarkerService markerService;
     private final CategoryService categoryService;
+    private final ReviewService reviewService;
+    private final UserService userService;
 
     @Autowired
-    public MarkerController(MarkerService markerService, CategoryService categoryService) {
+    public MarkerController(MarkerService markerService, CategoryService categoryService, ReviewService reviewService, UserService userService) {
         this.markerService = markerService;
         this.categoryService = categoryService;
+        this.reviewService = reviewService;
+        this.userService = userService;
     }
 
     @GetMapping("/list")
@@ -37,7 +45,6 @@ public class MarkerController {
     @PostMapping("/add")
     public String add(@ModelAttribute Marker marker) {
 
-        //TODO jeżeli nie-admin odesłać do innego widoku
         markerService.save(marker);
         return "redirect:list";
     }
@@ -64,9 +71,28 @@ public class MarkerController {
     @GetMapping("/details/{id}")
     public String details (@PathVariable Long id,
                            Model model){
-        model.addAttribute("marker", markerService.getOne(id));
+        Marker marker = markerService.getOne(id);
+        Float rating = (float) marker.getReviews().stream()
+                .mapToDouble(Review::getRating).average().orElse(0d);
+        model.addAttribute("rating", rating );
+        model.addAttribute("newReview", new Review());
+        model.addAttribute("marker", marker);
         return "viewMarkerDetails";
     }
+
+    @PostMapping("/newReview")
+    public String addReview(@RequestParam String markerId,
+                            Review review,
+                            HttpSession session){
+        Long userId = (Long) session.getAttribute("userId");
+        review.setUser(userService.getOne(userId));
+        review.setMarker(markerService.getOne(Long.parseLong(markerId)));
+        reviewService.save(review);
+        return "redirect:details/" + markerId;
+    }
+
+
+
 
     @GetMapping("/toggle/{id}")
     public String toggleVisible(@PathVariable Long id){

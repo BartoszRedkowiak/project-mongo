@@ -34,14 +34,14 @@ public class UserController {
         return "viewUserList";
     }
 
-    @GetMapping("/add")
+    @GetMapping("/register")
     public String add(Model model){
         model.addAttribute("user", new User());
         model.addAttribute("mainCategories", categoryService.getMainCategories());
         return "viewUser";
     }
 
-    @PostMapping("/add")
+    @PostMapping("/register")
     public String add(User user){
         userService.save(user);
         return "redirect:profile";
