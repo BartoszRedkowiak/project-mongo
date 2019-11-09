@@ -9,13 +9,14 @@
 <script>
     function initMap() {
         // Map options
-        var options = {
-            zoom: 12,
-            center: {lat: 52.237, lng: 21.017} //Warsaw
-        };
+        //
 
         // New map
         var map = new google.maps.Map(document.getElementById('map'), options);
+
+        //Add bike lane layer
+        // var bikeLayer = new google.maps.BicyclingLayer();
+        // bikeLayer.setMap(map);
 
         // Array of markers from database
         var markers = [
