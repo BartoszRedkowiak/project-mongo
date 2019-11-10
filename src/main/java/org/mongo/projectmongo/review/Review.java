@@ -4,6 +4,7 @@ import org.mongo.projectmongo.marker.Marker;
 import org.mongo.projectmongo.user.User;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "reviews")
@@ -25,6 +26,13 @@ public class Review {
     @ManyToOne
     @JoinColumn(name = "marker_id")
     private Marker marker;
+
+    private LocalDateTime created;
+
+    @PrePersist
+    public void prePersist(){
+        created = LocalDateTime.now();
+    }
 
     public Long getId() {
         return id;
@@ -64,5 +72,13 @@ public class Review {
 
     public void setMarker(Marker marker) {
         this.marker = marker;
+    }
+
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
     }
 }

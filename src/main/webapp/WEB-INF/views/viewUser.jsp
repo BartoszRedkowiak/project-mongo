@@ -18,10 +18,13 @@
                     <label for="firstNameId">Imię</label>
                     <form:input path="firstName" cssClass="form-control" id="firstNameId"/>
                 </div>
-
                 <div class="form-group">
                     <label for="lastNameId">Nazwisko</label>
                     <form:input path="lastName" cssClass="form-control" id="lastNameId"/>
+                </div>
+                <div class="form-group">
+                    <label for="nickNameId">Nazwisko</label>
+                    <form:input path="nickName" cssClass="form-control" id="nickNameId"/>
                 </div>
                 <div class="form-group">
                     <label for="emailId">Email</label>

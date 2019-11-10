@@ -19,3 +19,7 @@
     width: 20px;
     cursor: pointer;
 }
+
+li {
+    list-style-type: none;
+}
