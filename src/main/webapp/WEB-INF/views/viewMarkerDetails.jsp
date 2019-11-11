@@ -105,10 +105,10 @@
                 <table class="ml-1">
                     <tr>
                         <small class="form-text text-muted">Data komentarza: ${review.created}</small>
-                        ${review.user.firstName} ${review.user.lastName} ocenił na ${review.rating}
+                        <p>${review.user.firstName} ${review.user.lastName} ocenił na ${review.rating}</p>
                     </tr>
                     <tr>
-                        Komentarz: ${review.comment}
+                        <p>Komentarz: ${review.comment}</p>
                     </tr>
                 </table>
             </div>

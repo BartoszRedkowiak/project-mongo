@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -72,6 +73,11 @@ public class MarkerController {
     public String details (@PathVariable Long id,
                            Model model){
         Marker marker = markerService.getOne(id);
+
+        List<Review> reviews = marker.getReviews();
+        Collections.reverse(reviews);
+        marker.setReviews(reviews);
+
         Float rating = (float) marker.getReviews().stream()
                 .mapToDouble(Review::getRating).average().orElse(0d);
         model.addAttribute("rating", rating );
@@ -90,9 +96,6 @@ public class MarkerController {
         reviewService.save(review);
         return "redirect:details/" + markerId;
     }
-
-
-
 
     @GetMapping("/toggle/{id}")
     public String toggleVisible(@PathVariable Long id){
