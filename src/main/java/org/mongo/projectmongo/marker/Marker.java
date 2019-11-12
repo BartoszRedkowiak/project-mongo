@@ -5,6 +5,7 @@ package org.mongo.projectmongo.marker;
 import org.mongo.projectmongo.category.Category;
 import org.mongo.projectmongo.review.Review;
 import org.springframework.boot.context.properties.bind.DefaultValue;
+import org.springframework.stereotype.Controller;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -12,7 +13,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "markers")
-public class Marker {
+public class Marker implements Cloneable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +27,6 @@ public class Marker {
 
     @Column(nullable = false)
     private String name;
-
     private String description;
 
     @ManyToMany
@@ -34,14 +34,36 @@ public class Marker {
             joinColumns = @JoinColumn(name = "marker_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     private List<Category> categories;
-
     private LocalDateTime createdOn;
-
     private LocalDateTime updatedOn;
-
     private Boolean visible = false;
-
     private Boolean activeEvent = false;
+
+    public Marker() {
+    }
+    //Cloning constructor
+    public Marker(Marker marker) {
+        this.lat = marker.lat;
+        this.lng = marker.lng;
+        this.name = marker.name;
+        this.description = marker.description;
+        this.categories = marker.categories;
+        this.createdOn = marker.createdOn;
+        this.updatedOn = marker.updatedOn;
+        this.visible = false;
+        this.activeEvent = false;
+        this.markerEdits = null;
+        this.parent = marker;
+        this.reviews = marker.reviews;
+    }
+
+    @OneToMany
+    @JoinColumn(name = "marker_id")
+    private List<Marker> markerEdits;
+
+    @ManyToOne
+    @JoinColumn(name = "marker_id")
+    private Marker parent;
 
     @OneToMany(mappedBy = "marker")
     private List<Review> reviews;
@@ -142,5 +164,21 @@ public class Marker {
 
     public void setActiveEvent(Boolean activeEvent) {
         this.activeEvent = activeEvent;
+    }
+
+    public List<Marker> getMarkerEdits() {
+        return markerEdits;
+    }
+
+    public void setMarkerEdits(List<Marker> markerEdits) {
+        this.markerEdits = markerEdits;
+    }
+
+    public Marker getParent() {
+        return parent;
+    }
+
+    public void setParent(Marker parent) {
+        this.parent = parent;
     }
 }

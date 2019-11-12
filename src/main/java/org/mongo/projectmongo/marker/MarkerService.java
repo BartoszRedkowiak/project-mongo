@@ -48,10 +48,33 @@ public class MarkerService implements ServiceInterface<Marker> {
         return markers;
     }
 
+    public List<Marker> getAllNonEditMarkers(){ return markerRepository.findAllByParentNull();}
+
     @Override
     public void update(Marker marker) {
         markerRepository.save(marker);
     }
+
+    public void updateWithEdit(Long id) {
+        Marker approvedEdit = getOne(id);
+        Marker parent = approvedEdit.getParent();
+
+        parent.setLat(approvedEdit.getLat());
+        parent.setLng(approvedEdit.getLng());
+        parent.setName(approvedEdit.getName());
+        parent.setDescription(approvedEdit.getDescription());
+        parent.setCategories(approvedEdit.getCategories());
+
+        update(parent);
+    }
+
+
+
+    public void saveEdit(Marker marker) {
+        Marker editMarker = new Marker(marker); //using cloning constructor
+        markerRepository.save(editMarker);
+    }
+
     @Override
     public void delete(long id) {
         markerRepository.deleteById(id);

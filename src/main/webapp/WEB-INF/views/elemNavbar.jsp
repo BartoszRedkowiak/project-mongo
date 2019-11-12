@@ -19,7 +19,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <div class="mt-1 mx-2">
-                        <form method="get">
+                        <form method="get" action="/">
                             <label for="distanceSlider">Odległość: </label><span id="sliderValue"></span><br>
                             <input type="range" min="1" max="20" value="10" name="maxDistance"
                                    class="form-control-range"

@@ -33,7 +33,7 @@ public class MarkerController {
 
     @GetMapping("/list")
     public String list(Model model) {
-        model.addAttribute("markers", markerService.getAll());
+        model.addAttribute("markers", markerService.getAllNonEditMarkers());
         return "viewMarkerList";
     }
 
@@ -65,7 +65,17 @@ public class MarkerController {
 
     @PostMapping("/edit/{id}")
     public String edit(@ModelAttribute Marker marker) {
-        markerService.update(marker);
+
+        //TODO dodać if z weryfikacją userOrAdmin
+        markerService.saveEdit(marker);
+
+        return "redirect:../list";
+    }
+
+    @GetMapping("/acceptEdit/{id}")
+    public String approveEdit(@PathVariable Long id){
+        markerService.updateWithEdit(id);
+        markerService.delete(id);
         return "redirect:../list";
     }
 
