@@ -24,8 +24,8 @@
             <tr>
                 <th>Id</th>
                 <th>Nazwa</th>
-                <th>Opis</th>
                 <th>Widoczność</th>
+                <th>Event</th>
                 <th>Akcje</th>
             </tr>
             </thead>
@@ -34,11 +34,12 @@
                 <tr>
                     <td>${marker.id}</td>
                     <td>${marker.name}</td>
-                    <td>${marker.description}</td>
                     <td>${marker.visible == true? 'TAK' : 'NIE'}</td>
+                    <td>${marker.activeEvent == true? 'TAK' : 'NIE'}</td>
                     <td>
                         <div class="row">
-                        <a class="btn btn-dark" href="/markers/toggle/${marker.id}">Toggle</a><br>
+                        <a class="btn btn-dark" href="/markers/visibilityTog/${marker.id}">Visibility tog</a><br>
+                        <a class="btn btn-dark" href="/markers/eventTog/${marker.id}">Event tog</a><br>
                         <a class="btn btn-warning" href="/markers/edit/${marker.id}">Edytuj</a><br>
                         <a class="btn btn-danger" href="#" onclick="confirmDelete(${marker.id})">Usuń</a>
                         </div>

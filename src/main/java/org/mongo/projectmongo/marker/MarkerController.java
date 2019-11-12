@@ -86,6 +86,12 @@ public class MarkerController {
         return "viewMarkerDetails";
     }
 
+
+    @GetMapping("/tricks/{id}")
+    public String tricks(){
+        return "viewMarkerTricks";
+    }
+
     @PostMapping("/newReview")
     public String addReview(@RequestParam String markerId,
                             Review review,
@@ -97,10 +103,18 @@ public class MarkerController {
         return "redirect:details/" + markerId;
     }
 
-    @GetMapping("/toggle/{id}")
+    @GetMapping("/visibilityTog/{id}")
     public String toggleVisible(@PathVariable Long id){
         Marker marker = markerService.getOne(id);
         marker.setVisible(!marker.getVisible());
+        markerService.update(marker);
+        return "redirect:../list";
+    }
+
+    @GetMapping("/eventTog/{id}")
+    public String toggleEvent(@PathVariable Long id){
+        Marker marker = markerService.getOne(id);
+        marker.setActiveEvent(!marker.getActiveEvent());
         markerService.update(marker);
         return "redirect:../list";
     }

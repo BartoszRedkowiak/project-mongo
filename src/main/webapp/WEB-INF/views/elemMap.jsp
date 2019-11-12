@@ -23,7 +23,11 @@
             <c:forEach items="${markers}" var="marker" varStatus="index">
             {
                 position: {lat: ${marker.lat}, lng:${marker.lng}},
+                <c:if test="${marker.activeEvent == true}">
+                iconImage: '../../resources/icons/eventIcon.png' ,
+                </c:if>
                 content: '<h5>${marker.name}</h5>' +
+                    '<button class="btn btn-dark btn-sm btn-block mt-1" onclick="markerRedirect(${marker.id}, \'tricks\')" class="detailsBtn">Triczki</button>' +
                     '<button class="btn btn-dark btn-sm btn-block mt-1" onclick="markerRedirect(${marker.id}, \'details\')" class="detailsBtn">Szczegóły</button>' +
                     '<button class="btn btn-dark btn-sm btn-block mt-1" onclick="markerRedirect(${marker.id}, \'edit\')" class="editBtn">Edytuj</button>'
             },

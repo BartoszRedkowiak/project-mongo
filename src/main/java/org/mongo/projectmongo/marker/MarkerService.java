@@ -1,6 +1,5 @@
 package org.mongo.projectmongo.marker;
 
-import org.hibernate.Hibernate;
 import org.mongo.projectmongo.utils.ServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +34,20 @@ public class MarkerService implements ServiceInterface<Marker> {
     public List<Marker> getAllVisible() {
         return markerRepository.findAllByVisibleTrue();
     }
+
+    public List<Marker> getAllFiltered(Double lat, Double lng, Integer distance){
+        Double distanceConverted = 360.0 / 40075 * Double.valueOf(distance);
+
+        Double minLat = lat - distanceConverted;
+        Double maxLat = lat + distanceConverted;
+        Double minLng = lng - distanceConverted;
+        Double maxLng = lng + distanceConverted;
+        List<Marker> markers =  markerRepository.findAllFiltered(minLat, maxLat, minLng, maxLng);
+
+        System.out.println(markers.toString());
+        return markers;
+    }
+
     @Override
     public void update(Marker marker) {
         markerRepository.save(marker);
@@ -43,4 +56,7 @@ public class MarkerService implements ServiceInterface<Marker> {
     public void delete(long id) {
         markerRepository.deleteById(id);
     }
+
+
+
 }

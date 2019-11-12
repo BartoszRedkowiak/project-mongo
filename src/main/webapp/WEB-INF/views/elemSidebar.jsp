@@ -14,7 +14,7 @@
     <div class="foldable">
         <form method="get" >
             <div id="sliderContainer">
-                <label>Maksymalna odległość: <span id="sliderValue"></span><br>
+                <label>Odległość: <span id="sliderValue"></span><br>
                     <input type="range" min="0" max="20" value="10" name="maxDistance" class="form-control-range" id="distanceSlider">
                 </label>
             </div>

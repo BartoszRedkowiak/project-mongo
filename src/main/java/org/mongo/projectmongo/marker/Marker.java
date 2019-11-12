@@ -19,10 +19,10 @@ public class Marker {
     private Long id;
 
     @Column(nullable = false)
-    private double lat;
+    private Double lat;
 
     @Column(nullable = false)
-    private double lng;
+    private Double lng;
 
     @Column(nullable = false)
     private String name;
@@ -40,6 +40,8 @@ public class Marker {
     private LocalDateTime updatedOn;
 
     private Boolean visible = false;
+
+    private Boolean activeEvent = false;
 
     @OneToMany(mappedBy = "marker")
     private List<Review> reviews;
@@ -78,19 +80,19 @@ public class Marker {
         this.id = id;
     }
 
-    public double getLat() {
+    public Double getLat() {
         return lat;
     }
 
-    public void setLat(double lat) {
+    public void setLat(Double lat) {
         this.lat = lat;
     }
 
-    public double getLng() {
+    public Double getLng() {
         return lng;
     }
 
-    public void setLng(double lng) {
+    public void setLng(Double lng) {
         this.lng = lng;
     }
 
@@ -132,5 +134,13 @@ public class Marker {
 
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
+    }
+
+    public Boolean getActiveEvent() {
+        return activeEvent;
+    }
+
+    public void setActiveEvent(Boolean activeEvent) {
+        this.activeEvent = activeEvent;
     }
 }
