@@ -102,8 +102,17 @@
             </form:form>
         </div>
     </div>
+
     <div class="mt-3">
         <h3>Opinie użytkowników</h3>
+
+        <c:if test="${empty marker.reviews}">
+            <div class="card mt-3 mb-3">
+                <p>Brak opinii</p>
+            </div>
+        </c:if>
+
+
         <c:forEach items="${marker.reviews}" var="review">
             <div class="card mt-1">
                 <table class="ml-1">
