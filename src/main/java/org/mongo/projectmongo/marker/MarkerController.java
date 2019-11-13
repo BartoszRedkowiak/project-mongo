@@ -138,13 +138,22 @@ public class MarkerController {
 
     @PostMapping("tricks/{id}/vote")
     public String voteForContribution(@PathVariable(name = "id") Long markerId,
-                                      HttpServletRequest request){
+                                      HttpServletRequest request,
+                                      HttpSession session){
         Long contributionId = Long.parseLong(request.getParameter("contributionId"));
-
         EventContribution votedContribution = eventContributionService.getOne(contributionId);
+
+        Long userId = (Long) session.getAttribute("userId");
+        User user = userService.getOne(userId);
+        List<User> usersThatVoted = votedContribution.getUsersThatVoted();
+
+        if (usersThatVoted.contains(user)){
+            return "redirect:../" + markerId;
+        }
+        usersThatVoted.add(user);
+        votedContribution.setUsersThatVoted(usersThatVoted);
         votedContribution.setVotes(votedContribution.getVotes() + 1);
         eventContributionService.update(votedContribution);
-
         return "redirect:../" + markerId;
     }
 
