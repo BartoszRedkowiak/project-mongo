@@ -4,6 +4,8 @@ import org.mongo.projectmongo.marker.Marker;
 import org.mongo.projectmongo.user.User;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -13,6 +15,7 @@ public class EventContribution {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Size(min=5, max=30)
     private String name;
     private String igLink;
     private Integer votes = 0;

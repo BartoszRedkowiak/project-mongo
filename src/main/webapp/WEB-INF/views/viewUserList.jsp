@@ -10,10 +10,10 @@
 <body>
 
 <jsp:include page="elemNavbar.jsp"/>
-<div class="container m-1">
+<div class="container-fluid mt-1 mx-1">
     <header>Lista użytkowników</header>
     <div class="card mt-2">
-        <table class="table-sm table-hover">
+        <table class="table table-sm table-hover table-responsive-sm">
             <thead class="thead-dark">
             <tr>
                 <th>Id</th>
@@ -23,7 +23,7 @@
                 <th>Akcje</th>
             </tr>
             </thead>
-            <tbody class="table-hover">
+            <tbody>
             <c:forEach items="${users}" var="user" varStatus="index">
                 <tr>
                     <td>${user.id}</td>

@@ -1,11 +1,13 @@
 package org.mongo.projectmongo.review;
 
-import org.hibernate.validator.constraints.Length;
 import org.mongo.projectmongo.marker.Marker;
 import org.mongo.projectmongo.user.User;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Entity
@@ -16,11 +18,12 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @Min(1)
+    @Max(5)
     @Column(nullable = false)
     private Float rating;
 
-    @Length(min = 5, max=255)
+    @Size(min = 5, max=255)
     private String comment;
 
     @ManyToOne

@@ -27,7 +27,7 @@
 <div class="container-fluid mt-1 mx-1">
     <header>Lista markerów</header>
     <div class="card mt-2">
-        <table class="table-sm table-responsive-sm">
+        <table class="table table-sm table-hover table-responsive-sm">
             <thead class="thead-dark">
             <tr>
                 <th scope="col">Id</th>
@@ -41,7 +41,7 @@
                 <th scope="col">Akcje</th>
             </tr>
             </thead>
-            <tbody class="table-hover">
+            <tbody>
             <c:forEach items="${markers}" var="marker" varStatus="index">
                 <tr class="initEntry">
                     <td scope="row">${marker.id}</td>
@@ -49,15 +49,20 @@
                     <td>${marker.lng}</td>
                     <td>${marker.name}</td>
                     <td>${marker.description}</td>
-                    <td>${marker.visible == true? 'TAK' : 'NIE'}</td>
-                    <td>${marker.activeEvent == true? 'TAK' : 'NIE'}</td>
+                    <td>
+                            ${marker.visible == true? 'TAK' : 'NIE'}
+                        <a class="btn btn-dark btn-sm mx-1 my-1" href="/markers/visibilityTog/${marker.id}">Toggle</a>
+                    </td>
+                    <td>
+                            ${marker.activeEvent == true? 'TAK' : 'NIE'}
+                        <a class="btn btn-dark btn-sm mx-1 my-1" href="/markers/eventTog/${marker.id}">Toggle</a>
+                    </td>
                     <td>${fn:length(marker.markerEdits)}</td>
                     <td>
                         <div class="row">
-                            <a class="btn btn-dark btn-sm mx-1" href="/markers/visibilityTog/${marker.id}">Visibility tog</a> <br>
-                            <a class="btn btn-dark btn-sm mx-1" href="/markers/eventTog/${marker.id}">Event tog</a> <br>
-                            <a class="btn btn-warning btn-sm mx-1" href="/markers/edit/${marker.id}">Edytuj</a> <br>
-                            <a class="btn btn-danger btn-sm mx-1" onclick="confirmDelete(${marker.id}, '/markers/delete/')">Usuń</a>
+                            <a class="btn btn-warning btn-sm mx-1 my-1" href="/markers/edit/${marker.id}">Edytuj</a>
+                            <a class="btn btn-danger btn-sm mx-1 my-1"
+                               onclick="confirmDelete(${marker.id}, '/markers/delete/')">Usuń</a>
                         </div>
                     </td>
                 </tr>

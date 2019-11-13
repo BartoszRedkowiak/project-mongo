@@ -26,10 +26,5 @@ body {
 }
 
 .markerEdits {
-    background-color: lightsteelblue !important;
-}
-
-
-li {
-    list-style-type: none;
+    background-color: lightsteelblue;
 }

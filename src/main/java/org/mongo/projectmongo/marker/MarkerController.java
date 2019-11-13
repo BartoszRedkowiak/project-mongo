@@ -116,14 +116,19 @@ public class MarkerController {
                          @PathVariable Long id){
         model.addAttribute("newContribution", new EventContribution());
         model.addAttribute("contributions", eventContributionService.getAllValidatedForMarker(id));
-        model.addAttribute("markerId", id);
+        model.addAttribute("marker", markerService.getOne(id));
         return "viewContributions";
     }
 
     @PostMapping("/tricks/{id}")
-    public String tricks(EventContribution contribution,
+    public String tricks(@Valid @ModelAttribute("newContribution") EventContribution contribution,
+                         BindingResult result,
                          @PathVariable(name = "id") Long markerId,
                          HttpSession session){
+
+        if (result.hasErrors()){
+            return "viewContributions";
+        }
 
         Long userId = (Long) session.getAttribute("userId");
         contribution.setIgLink(contribution.getIgLink().trim());
@@ -158,11 +163,11 @@ public class MarkerController {
     }
 
 
-    @PostMapping("/newReview")
+    @PostMapping("/details/{id}")
     public String addReview(@RequestParam String markerId,
-                            @Valid Review review,
-                            HttpSession session,
-                            BindingResult result){
+                            @Valid @ModelAttribute("newReview") Review review,
+                            BindingResult result,
+                            HttpSession session){
         if (result.hasErrors()){
             return "viewMarkerDetails";
         }
@@ -171,7 +176,7 @@ public class MarkerController {
         review.setUser(userService.getOne(userId));
         review.setMarker(markerService.getOne(Long.parseLong(markerId)));
         reviewService.save(review);
-        return "redirect:details/" + markerId;
+        return "redirect:../details/" + markerId;
     }
 
     @GetMapping("/visibilityTog/{id}")
