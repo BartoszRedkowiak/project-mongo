@@ -21,6 +21,10 @@
     cursor: pointer;
 }
 
+body {
+    background-color: #EAEAEA;
+}
+
 .markerEdits {
     background-color: lightsteelblue !important;
 }

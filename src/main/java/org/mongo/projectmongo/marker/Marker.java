@@ -1,6 +1,7 @@
 package org.mongo.projectmongo.marker;
 
 import org.mongo.projectmongo.category.Category;
+import org.mongo.projectmongo.eventContribution.EventContribution;
 import org.mongo.projectmongo.review.Review;
 
 import javax.persistence.*;
@@ -34,6 +35,11 @@ public class Marker implements Cloneable {
     @Size(max = 255)
     private String description;
 
+    @OneToMany(mappedBy = "marker")
+    private List<EventContribution> eventContributions;
+
+    private Boolean activeEvent = false;
+
     @NotEmpty
     @ManyToMany
     @JoinTable(name = "markers_categories",
@@ -43,7 +49,6 @@ public class Marker implements Cloneable {
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
     private Boolean visible = false;
-    private Boolean activeEvent = false;
 
     public Marker() {
     }
@@ -185,5 +190,13 @@ public class Marker implements Cloneable {
 
     public void setParent(Marker parent) {
         this.parent = parent;
+    }
+
+    public List<EventContribution> getEventContributions() {
+        return eventContributions;
+    }
+
+    public void setEventContributions(List<EventContribution> eventContributions) {
+        this.eventContributions = eventContributions;
     }
 }

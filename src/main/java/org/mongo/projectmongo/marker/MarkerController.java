@@ -2,6 +2,8 @@ package org.mongo.projectmongo.marker;
 
 import org.mongo.projectmongo.category.Category;
 import org.mongo.projectmongo.category.CategoryService;
+import org.mongo.projectmongo.eventContribution.EventContribution;
+import org.mongo.projectmongo.eventContribution.EventContributionService;
 import org.mongo.projectmongo.review.Review;
 import org.mongo.projectmongo.review.ReviewService;
 import org.mongo.projectmongo.user.User;
@@ -25,13 +27,15 @@ public class MarkerController {
     private final CategoryService categoryService;
     private final ReviewService reviewService;
     private final UserService userService;
+    private final EventContributionService eventContributionService;
 
     @Autowired
-    public MarkerController(MarkerService markerService, CategoryService categoryService, ReviewService reviewService, UserService userService) {
+    public MarkerController(MarkerService markerService, CategoryService categoryService, ReviewService reviewService, UserService userService, EventContributionService eventContributionService) {
         this.markerService = markerService;
         this.categoryService = categoryService;
         this.reviewService = reviewService;
         this.userService = userService;
+        this.eventContributionService = eventContributionService;
     }
 
     @GetMapping("/list")
@@ -107,9 +111,29 @@ public class MarkerController {
 
 
     @GetMapping("/tricks/{id}")
-    public String tricks(){
+    public String tricks(Model model,
+                         @PathVariable Long id){
+        model.addAttribute("newContribution", new EventContribution());
+        model.addAttribute("contributions", eventContributionService.getAllValidatedForMarker(id));
         return "viewMarkerTricks";
     }
+
+    @PostMapping("/tricks/{id}")
+    public String tricks(EventContribution contribution,
+                         @PathVariable(name = "id") Long markerId,
+                         HttpSession session){
+
+        Long userId = (Long) session.getAttribute("userId");
+        contribution.setIgLink(contribution.getIgLink().trim());
+
+        contribution.setUser(userService.getOne(userId));
+        contribution.setMarker(markerService.getOne(markerId));
+
+        eventContributionService.save(contribution);
+
+        return "redirect:../tricks/" + markerId;
+    }
+
 
     @PostMapping("/newReview")
     public String addReview(@RequestParam String markerId,
@@ -119,7 +143,7 @@ public class MarkerController {
         if (result.hasErrors()){
             return "viewMarkerDetails";
         }
-
+        //TODO do zmiany i walidacji po wzdrożeniu logowania
         Long userId = (Long) session.getAttribute("userId");
         review.setUser(userService.getOne(userId));
         review.setMarker(markerService.getOne(Long.parseLong(markerId)));

@@ -1,6 +1,7 @@
 package org.mongo.projectmongo.user;
 
 import org.mongo.projectmongo.category.Category;
+import org.mongo.projectmongo.eventContribution.EventContribution;
 import org.mongo.projectmongo.review.Review;
 
 import javax.persistence.*;
@@ -41,6 +42,9 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<Review> reviews;
+
+    @OneToMany(mappedBy = "user")
+    private List<EventContribution> eventContributions;
 
     @PrePersist
     public void prePersist(){
@@ -111,4 +115,11 @@ public class User {
         this.reviews = reviews;
     }
 
+    public List<EventContribution> getEventContributions() {
+        return eventContributions;
+    }
+
+    public void setEventContributions(List<EventContribution> eventContributions) {
+        this.eventContributions = eventContributions;
+    }
 }

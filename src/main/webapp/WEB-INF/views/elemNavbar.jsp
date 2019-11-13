@@ -29,7 +29,7 @@
                             <c:forEach items="${categories}" var="category">
                                 <input type="checkbox" name="categoryId" value="${category.id}"/>${category.name}<br>
                             </c:forEach>
-                            <input type="submit" value="Filtruj">
+                            <input class="btn btn-primary" type="submit" value="Filtruj">
                         </form>
                     </div>
                 </div>
