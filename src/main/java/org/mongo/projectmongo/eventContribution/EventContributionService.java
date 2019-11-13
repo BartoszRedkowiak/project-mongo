@@ -33,6 +33,10 @@ public class EventContributionService implements ServiceInterface<EventContribut
         return eventContributionRepository.findAll();
     }
 
+    public List<EventContribution> getAllFromLatest() {
+        return eventContributionRepository.findAllByOrderByIdDesc();
+    }
+
     public List<EventContribution> getAllValidatedForMarker(Long id) {
         return eventContributionRepository.findAllByValidatedTrueAndMarker_IdOrderByVotesDesc(id);
     }

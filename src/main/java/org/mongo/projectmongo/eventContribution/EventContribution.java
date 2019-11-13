@@ -94,4 +94,20 @@ public class EventContribution {
     public void setName(String name) {
         this.name = name;
     }
+
+    public List<User> getUsersThatVoted() {
+        return usersThatVoted;
+    }
+
+    public void setUsersThatVoted(List<User> usersThatVoted) {
+        this.usersThatVoted = usersThatVoted;
+    }
+
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
+    }
 }

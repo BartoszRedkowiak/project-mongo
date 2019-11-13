@@ -42,6 +42,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="/markers/list">Lista markerów</a>
                     <a class="dropdown-item" href="/users/list">Lista użytkowników</a>
+                    <a class="dropdown-item" href="/contributions/list">Lista kontrybucji</a>
                 </div>
             </li>
             <li class="nav-item dropdown">

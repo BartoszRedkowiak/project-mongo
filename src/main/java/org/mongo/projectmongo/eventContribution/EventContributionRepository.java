@@ -7,4 +7,6 @@ import java.util.List;
 public interface EventContributionRepository extends JpaRepository<EventContribution, Long> {
 
     public List<EventContribution> findAllByValidatedTrueAndMarker_IdOrderByVotesDesc(Long markerId);
+
+    public List<EventContribution> findAllByOrderByIdDesc();
 }

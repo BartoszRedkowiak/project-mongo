@@ -117,7 +117,7 @@ public class MarkerController {
         model.addAttribute("newContribution", new EventContribution());
         model.addAttribute("contributions", eventContributionService.getAllValidatedForMarker(id));
         model.addAttribute("markerId", id);
-        return "viewMarkerTricks";
+        return "viewContributions";
     }
 
     @PostMapping("/tricks/{id}")
