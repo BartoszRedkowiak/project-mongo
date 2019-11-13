@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Collections;
@@ -115,6 +116,7 @@ public class MarkerController {
                          @PathVariable Long id){
         model.addAttribute("newContribution", new EventContribution());
         model.addAttribute("contributions", eventContributionService.getAllValidatedForMarker(id));
+        model.addAttribute("markerId", id);
         return "viewMarkerTricks";
     }
 
@@ -132,6 +134,18 @@ public class MarkerController {
         eventContributionService.save(contribution);
 
         return "redirect:../tricks/" + markerId;
+    }
+
+    @PostMapping("tricks/{id}/vote")
+    public String voteForContribution(@PathVariable(name = "id") Long markerId,
+                                      HttpServletRequest request){
+        Long contributionId = Long.parseLong(request.getParameter("contributionId"));
+
+        EventContribution votedContribution = eventContributionService.getOne(contributionId);
+        votedContribution.setVotes(votedContribution.getVotes() + 1);
+        eventContributionService.update(votedContribution);
+
+        return "redirect:../" + markerId;
     }
 
 

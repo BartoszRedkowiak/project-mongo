@@ -4,6 +4,8 @@ import org.mongo.projectmongo.marker.Marker;
 import org.mongo.projectmongo.user.User;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity(name = "event_contributions")
 public class EventContribution {
@@ -23,6 +25,19 @@ public class EventContribution {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @ManyToMany
+    @JoinTable(name = "contributions_users_votes",
+    joinColumns = @JoinColumn(name = "event_contribution_id"),
+    inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private List<User> usersThatVoted;
+
+    private LocalDateTime created;
+
+    @PrePersist
+    public void prePersist(){
+        created = LocalDateTime.now();
+    }
 
     public Long getId() {
         return id;

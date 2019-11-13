@@ -36,7 +36,7 @@
                 <div class="card-subtitle mt-1">
                     Dodane przez: ${contribution.user.firstName} ${contribution.user.lastName} (${contribution.user.email})<br>
                     Liczba głosów: ${contribution.votes}
-                    <form method="post" action="/markers/tricks/vote">
+                    <form method="post" action="/markers/tricks/${markerId}/vote">
                         <input type="text" value="${contribution.id}" name="contributionId" hidden/>
                         <input type="submit" class="btn btn-primary my-2" value="Łap łapkę w górę"/>
                     </form>
