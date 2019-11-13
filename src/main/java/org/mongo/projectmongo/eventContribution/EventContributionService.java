@@ -34,7 +34,7 @@ public class EventContributionService implements ServiceInterface<EventContribut
     }
 
     public List<EventContribution> getAllValidatedForMarker(Long id) {
-        return eventContributionRepository.findAllByValidatedTrueAndMarker_Id(id);
+        return eventContributionRepository.findAllByValidatedTrueAndMarker_IdOrderByVotesDesc(id);
     }
 
     @Override
