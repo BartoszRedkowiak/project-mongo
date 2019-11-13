@@ -1,13 +1,12 @@
 package org.mongo.projectmongo.marker;
 
-
-
 import org.mongo.projectmongo.category.Category;
 import org.mongo.projectmongo.review.Review;
-import org.springframework.boot.context.properties.bind.DefaultValue;
-import org.springframework.stereotype.Controller;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -19,16 +18,23 @@ public class Marker implements Cloneable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
     @Column(nullable = false)
     private Double lat;
+
 
     @Column(nullable = false)
     private Double lng;
 
+    @NotBlank
+    @Size(min = 5, max = 30)
     @Column(nullable = false)
     private String name;
+
+    @Size(max = 255)
     private String description;
 
+    @NotEmpty
     @ManyToMany
     @JoinTable(name = "markers_categories",
             joinColumns = @JoinColumn(name = "marker_id"),
@@ -57,8 +63,7 @@ public class Marker implements Cloneable {
         this.reviews = marker.reviews;
     }
 
-    @OneToMany
-    @JoinColumn(name = "marker_id")
+    @OneToMany(mappedBy = "parent")
     private List<Marker> markerEdits;
 
     @ManyToOne

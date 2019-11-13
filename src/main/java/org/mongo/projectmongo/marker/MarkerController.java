@@ -4,13 +4,16 @@ import org.mongo.projectmongo.category.Category;
 import org.mongo.projectmongo.category.CategoryService;
 import org.mongo.projectmongo.review.Review;
 import org.mongo.projectmongo.review.ReviewService;
+import org.mongo.projectmongo.user.User;
 import org.mongo.projectmongo.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.Collections;
 import java.util.List;
 
@@ -44,8 +47,11 @@ public class MarkerController {
     }
 
     @PostMapping("/add")
-    public String add(@ModelAttribute Marker marker) {
-
+    public String add(@Valid @ModelAttribute Marker marker,
+                      BindingResult result) {
+        if (result.hasErrors()){
+            return "viewMarker";
+        }
         markerService.save(marker);
         return "redirect:list";
     }
@@ -64,7 +70,11 @@ public class MarkerController {
     }
 
     @PostMapping("/edit/{id}")
-    public String edit(@ModelAttribute Marker marker) {
+    public String edit(@Valid @ModelAttribute Marker marker,
+                       BindingResult result) {
+        if (result.hasErrors()){
+            return "viewMarker";
+        }
 
         //TODO dodać if z weryfikacją userOrAdmin
         markerService.saveEdit(marker);
@@ -75,7 +85,6 @@ public class MarkerController {
     @GetMapping("/acceptEdit/{id}")
     public String approveEdit(@PathVariable Long id){
         markerService.updateWithEdit(id);
-        markerService.delete(id);
         return "redirect:../list";
     }
 
@@ -104,8 +113,13 @@ public class MarkerController {
 
     @PostMapping("/newReview")
     public String addReview(@RequestParam String markerId,
-                            Review review,
-                            HttpSession session){
+                            @Valid Review review,
+                            HttpSession session,
+                            BindingResult result){
+        if (result.hasErrors()){
+            return "viewMarkerDetails";
+        }
+
         Long userId = (Long) session.getAttribute("userId");
         review.setUser(userService.getOne(userId));
         review.setMarker(markerService.getOne(Long.parseLong(markerId)));
@@ -131,5 +145,8 @@ public class MarkerController {
 
     @ModelAttribute("categories")
     public List<Category> categories(){ return categoryService.getSubCategories();  }
+
+    @ModelAttribute("userLogin")
+    public User user(){ return new User(); }
 
 }

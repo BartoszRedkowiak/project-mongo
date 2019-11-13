@@ -43,17 +43,20 @@
                     <div class="form-group col-md-6">
                         <label for="formName">Name</label>
                         <form:input path="name" cssClass="form-control" id="formName"/>
+                        <form:errors path="name" element="small" cssStyle="color:red"/>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="formCategories">Category</label>
                         <form:select path="categories" items="${categories}" itemLabel="name" itemValue="id"
                                      cssClass="form-control" id="formCategories"/>
+                        <form:errors path="categories" element="small" cssStyle="color:red"/>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-12">
                         <label for="formDescription">Description</label>
                         <form:textarea path="description" cssClass="form-control" id="formDescription"/>
+                        <form:errors path="description" element="small" cssStyle="color:red"/>
                     </div>
                 </div>
                 <div class="row">

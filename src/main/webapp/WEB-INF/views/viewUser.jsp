@@ -17,24 +17,28 @@
                 <div class="form-group">
                     <label for="firstNameId">Imię</label>
                     <form:input path="firstName" cssClass="form-control" id="firstNameId"/>
+                    <form:errors path="firstName" element="small" cssStyle="color:red"/>
                 </div>
                 <div class="form-group">
                     <label for="lastNameId">Nazwisko</label>
                     <form:input path="lastName" cssClass="form-control" id="lastNameId"/>
+                    <form:errors path="lastName" element="small" cssStyle="color:red"/>
                 </div>
                 <div class="form-group">
                     <label for="emailId">Email</label>
                     <form:input path="email" cssClass="form-control" id="emailId"/>
+                    <form:errors path="email" element="small" cssStyle="color:red"/>
                 </div>
 
                 <div class="form-group">
                     <label for="passwordOneId">Hasło</label>
-                    <form:input path="password" cssClass="form-control" id="passwordOneId"/>
+                    <form:password path="password" cssClass="form-control" id="passwordOneId"/>
+                    <form:errors path="password" element="small" cssStyle="color:red"/>
                 </div>
 
                 <div class="form-group">
                     <label for="passwordTwoId">Powtórz hasło</label>
-                    <input class="form-control" id="passwordTwoId" name="password2"/>
+                    <input type="password" class="form-control" id="passwordTwoId" name="password2"/>
                 </div>
 
                 <div class="form-group">
@@ -42,6 +46,7 @@
                     <form:select items="${mainCategories}" path="sportTypes" cssClass="form-control" id="categoriesId"
                                  itemLabel="name"
                                  itemValue="id"/>
+                    <form:errors path="sportTypes" element="small" cssStyle="color:red"/>
                 </div>
                 <input class="btn btn-dark" type="submit" value="Zapisz"/>
             </form:form>

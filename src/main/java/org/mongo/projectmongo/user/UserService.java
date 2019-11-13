@@ -27,6 +27,8 @@ public class UserService implements ServiceInterface<User> {
         return userRepository.findById(id).orElse(null);
     }
 
+    public User getOneByEmail(String email){ return userRepository.findFirstByEmail(email); }
+
     @Override
     public List<User> getAll() {
         return userRepository.findAll();

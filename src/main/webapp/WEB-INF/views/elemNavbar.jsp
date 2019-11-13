@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
@@ -22,7 +23,7 @@
                         <form method="get" action="/">
                             <label for="distanceSlider">Odległość: </label><span id="sliderValue"></span><br>
                             <input type="range" min="1" max="20" value="10" name="maxDistance"
-                                   class="form-control-range"
+                                   class="custom-range"
                                    id="distanceSlider">
                             <label>Rodzaj spotu</label><br>
                             <c:forEach items="${categories}" var="category">
@@ -32,9 +33,6 @@
                         </form>
                     </div>
                 </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Eventy</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button"
@@ -46,16 +44,29 @@
                     <a class="dropdown-item" href="/users/list">Lista użytkowników</a>
                 </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Profil</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Użytkownik
+                </a>
+                <div class="dropdown-menu">
+                    <form:form action="/users/login" method="post" class="px-4 py-3" modelAttribute="userLogin">
+                        <div class="form-group">
+                            <label for="loginEmail">Email address</label>
+                            <form:input path="email" type="email" class="form-control" id="loginEmail" placeholder="email@example.com"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Password</label>
+                            <form:password path="password" class="form-control" id="loginPassword" placeholder="Password"/>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Zaloguj</button>
+                    </form:form>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/users/register">Rejestracja</a>
+                    <a class="dropdown-item" href="/users/profile">Profil</a>
+                    <a class="dropdown-item" href="#">Wyloguj</a>
+                </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Logowanie</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/users/register">Rejestracja</a>
-            </li>
-
         </ul>
     </div>
 </nav>

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -63,9 +64,10 @@ public class MarkerService implements ServiceInterface<Marker> {
         parent.setLng(approvedEdit.getLng());
         parent.setName(approvedEdit.getName());
         parent.setDescription(approvedEdit.getDescription());
-        parent.setCategories(approvedEdit.getCategories());
-
+        parent.getCategories().clear();
+        parent.getCategories().addAll(approvedEdit.getCategories());
         update(parent);
+        delete(approvedEdit.getId());
     }
 
 

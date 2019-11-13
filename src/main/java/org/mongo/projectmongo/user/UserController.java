@@ -1,13 +1,17 @@
 package org.mongo.projectmongo.user;
 
+import org.mongo.projectmongo.category.Category;
 import org.mongo.projectmongo.category.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/users")
@@ -37,12 +41,33 @@ public class UserController {
     @GetMapping("/register")
     public String add(Model model){
         model.addAttribute("user", new User());
-        model.addAttribute("mainCategories", categoryService.getMainCategories());
+//        model.addAttribute("mainCategories", categoryService.getMainCategories());
         return "viewUser";
     }
 
     @PostMapping("/register")
-    public String add(User user){
+    public String add(@Valid User user,
+                      BindingResult result,
+                      HttpServletRequest request){
+        if (result.hasErrors()){
+            return "viewUser";
+        }
+
+        String secondPassInput = request.getParameter("password2");
+
+        User existingUser = userService.getOneByEmail(user.getEmail());
+        if (existingUser != null) {
+            result.addError(new FieldError("user", "email",
+                    "Istnieje już konto o podanym adresie email"));
+            return "viewUser";
+        }
+
+        if (!user.getPassword().equals(secondPassInput)) {
+            result.addError(new FieldError("user", "password",
+                    "Podane hasła nie są zgodne"));
+            return "viewUser";
+        }
+
         userService.save(user);
         return "redirect:profile";
     }
@@ -55,7 +80,11 @@ public class UserController {
     }
 
     @PostMapping("/edit/{id}")
-    public String edit(User user){
+    public String edit(@Valid User user,
+                       BindingResult result){
+        if (result.hasErrors()){
+            return "viewUser";
+        }
         userService.update(user);
         return "redirect:../profile";
     }
@@ -65,6 +94,12 @@ public class UserController {
         userService.delete(id);
         return "redirect:../list";
     }
+
+    @ModelAttribute("mainCategories")
+    public List<Category> categories(){ return categoryService.getMainCategories();  }
+
+    @ModelAttribute("userLogin")
+    public User user(){ return new User(); }
 
 //    public String logout(){}
 

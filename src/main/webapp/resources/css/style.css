@@ -21,8 +21,8 @@
     cursor: pointer;
 }
 
-.markerEdits tr{
-    background-color: lightsteelblue;
+.markerEdits {
+    background-color: lightsteelblue !important;
 }
 
 

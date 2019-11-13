@@ -9,20 +9,14 @@
         $(function () {
             var initEntryRows = $('tr.initEntry');
             var markersEdits = $('.markerEdits');
-            markersEdits.hide();
+            // markersEdits.parent().hide();
 
             initEntryRows.on('click', function () {
-                $(this).next('.markerEdits').toggle(300);
+                $(this).find('.markerEdits').toggle(300);
             });
 
 
         });
-
-        function confirmDelete(id) {
-            if (confirm("Potwierdź usunięcie spotu o id: " + id)) {
-                window.location.href = "/markers/delete/" + id;
-            }
-        }
 
     </script>
 </head>
@@ -60,16 +54,16 @@
                     <td>${fn:length(marker.markerEdits)}</td>
                     <td>
                         <div class="row">
-                            <a class="btn btn-dark btn-sm" href="/markers/visibilityTog/${marker.id}">Visibility tog</a><br>
-                            <a class="btn btn-dark  btn-sm" href="/markers/eventTog/${marker.id}">Event tog</a><br>
-                            <a class="btn btn-warning  btn-sm" href="/markers/edit/${marker.id}">Edytuj</a><br>
-                            <a class="btn btn-danger  btn-sm" href="#" onclick="confirmDelete(${marker.id})">Usuń</a>
+                            <a class="btn btn-dark btn-sm mx-1" href="/markers/visibilityTog/${marker.id}">Visibility tog</a> <br>
+                            <a class="btn btn-dark btn-sm mx-1" href="/markers/eventTog/${marker.id}">Event tog</a> <br>
+                            <a class="btn btn-warning btn-sm mx-1" href="/markers/edit/${marker.id}">Edytuj</a> <br>
+                            <a class="btn btn-danger btn-sm mx-1" onclick="confirmDelete(${marker.id}, '/markers/delete/')">Usuń</a>
                         </div>
                     </td>
                 </tr>
-                <div class="markerEdits" hidden>
+                <div>
                     <c:forEach items="${marker.markerEdits}" var="edit">
-                        <tr>
+                        <tr class="markerEdits">
                             <td scope="row">${edit.id}</td>
                             <td>${edit.lat}</td>
                             <td>${edit.lng}</td>
@@ -80,9 +74,9 @@
                             <td></td>
                             <td>
                                 <div class="row">
-                                    <a class="btn btn-success btn-sm"
+                                    <a class="btn btn-success btn-sm mx-1"
                                        href="/markers/acceptEdit/${edit.id}">Akceptuj</a><br>
-                                    <a class="btn btn-danger btn-sm" href="#"
+                                    <a class="btn btn-danger btn-sm mx-1" href="#"
                                        onclick="confirmDelete(${edit.id})">Odrzuć</a>
                                 </div>
                             </td>

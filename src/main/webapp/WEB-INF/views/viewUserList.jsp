@@ -4,6 +4,8 @@
 <html>
 <head>
     <jsp:include page="elemHeadLinks.jsp"/>
+
+
 </head>
 <body>
 
@@ -22,15 +24,15 @@
             </tr>
             </thead>
             <tbody class="table-hover">
-            <c:forEach items="${users}" var="marker" varStatus="index">
+            <c:forEach items="${users}" var="user" varStatus="index">
                 <tr>
-                    <td>${marker.id}</td>
-                    <td>${marker.firstName}</td>
-                    <td>${marker.lastName}</td>
-                    <td>${marker.email}</td>
+                    <td>${user.id}</td>
+                    <td>${user.firstName}</td>
+                    <td>${user.lastName}</td>
+                    <td>${user.email}</td>
                     <td>
-                        <button class="btn btn-warning" onclick="window.location.href = '/users/edit/${marker.id}'">Edytuj</button>
-                        <button class="btn btn-danger" onclick="window.location.href = '/users/delete/${marker.id}'">Usuń</button>
+                        <button class="btn btn-warning" onclick="window.location.href = '/users/edit/${user.id}'">Edytuj</button>
+                        <button class="btn btn-danger" onclick="confirmDelete(${user.id}, '/users/delete/')">Usuń</button>
                     </td>
                 </tr>
             </c:forEach>

@@ -51,6 +51,7 @@
             <tr>
                 <th scope="row">Data dodania</th>
                 <td>${marker.createdOn}</td>
+                <td><fmt:formatDate value="${marker.createdOn}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
             </tr>
             <tr>
                 <th scope="row">Średnia ocena</th>

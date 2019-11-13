@@ -4,6 +4,7 @@ import org.mongo.projectmongo.category.Category;
 import org.mongo.projectmongo.category.CategoryService;
 import org.mongo.projectmongo.marker.Marker;
 import org.mongo.projectmongo.marker.MarkerService;
+import org.mongo.projectmongo.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,6 +55,9 @@ public class HomeController {
         }
         return "viewHome";
     }
+
+    @ModelAttribute("userLogin")
+    public User user(){ return new User(); }
 
     @ModelAttribute("markers")
     public List<Marker> markers() {
