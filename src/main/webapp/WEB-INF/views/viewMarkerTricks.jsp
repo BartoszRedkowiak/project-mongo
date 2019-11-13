@@ -12,29 +12,46 @@
 
 <div class="container">
     <div class="card mt-2">
-            <div class="card-body">
-                <form:form modelAttribute="newContribution" method="post">
-                    <label for="linkInput">Chcesz walczyć o spot? Wklej link filmu na instagramie:</label>
-                    <form:input path="igLink" cssClass="form-control" type="text" id="linkInput"
-                                placeholder="Wzór linku: https://www.instagram.com/p/indywidualnyKodFilmu/"/>
-                    <label>Nazwij swoje combo</label>
-                    <form:input path="name" cssClass="form-control" type="text" id="nameInput"
-                                placeholder="np. Fakie 360 Bigspin"/>
-                    <input class="btn btn-primary mt-1" type="submit" value="Prześlij"/>
-                </form:form>
-            </div>
+        <div class="card-body">
+            <form:form modelAttribute="newContribution" method="post">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5>Weź udział w evencie</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Nazwij swoje combo</label>
+                        <form:input path="name" cssClass="form-control" type="text" id="nameInput"
+                                    placeholder="np. Fakie 360 Bigspin"/>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="linkInput">Dodaj link do filmu na instagramie:</label>
+                        <form:input path="igLink" cssClass="form-control" type="text" id="linkInput"
+                                    placeholder="Wzór linku: https://www.instagram.com/p/indywidualnyKodFilmu/"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="cold-md-12">
+                        <input class="btn btn-primary mt-1 ml-3" type="submit" value="Prześlij"/>
+                    </div>
+                </div>
+            </form:form>
+        </div>
     </div>
 </div>
 
 <div class="container">
     <c:forEach items="${contributions}" var="contribution">
         <div class="card mt-2">
-            <div class="card-body">
-                <h5 class="card-header">
+            <h5 class="card-header">
                     ${contribution.name}
-                </h5>
+            </h5>
+            <div class="card-body">
+
                 <div class="card-subtitle mt-1">
-                    Dodane przez: ${contribution.user.firstName} ${contribution.user.lastName} (${contribution.user.email})<br>
+                    Dodane przez: ${contribution.user.firstName} ${contribution.user.lastName}
+                    (${contribution.user.email})<br>
                     Liczba głosów: ${contribution.votes}
                     <form method="post" action="/markers/tricks/${markerId}/vote">
                         <input type="text" value="${contribution.id}" name="contributionId" hidden/>

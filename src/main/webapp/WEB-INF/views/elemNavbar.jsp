@@ -52,11 +52,11 @@
                 <div class="dropdown-menu">
                     <form:form action="/users/login" method="post" class="px-4 py-3" modelAttribute="userLogin">
                         <div class="form-group">
-                            <label for="loginEmail">Email address</label>
+                            <label for="loginEmail">Adres email</label>
                             <form:input path="email" type="email" class="form-control" id="loginEmail" placeholder="email@example.com"/>
                         </div>
                         <div class="form-group">
-                            <label for="loginPassword">Password</label>
+                            <label for="loginPassword">Hasło</label>
                             <form:password path="password" class="form-control" id="loginPassword" placeholder="Password"/>
                         </div>
                         <button type="submit" class="btn btn-primary">Zaloguj</button>
