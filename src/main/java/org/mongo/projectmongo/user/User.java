@@ -18,7 +18,6 @@ public class User {
 
     private String firstName;
     private String lastName;
-    private String nickName;
 
     @Column(unique = true, nullable = false)
     private String email;
@@ -95,14 +94,6 @@ public class User {
 
     public void setRegistrationDate(LocalDateTime registrationDate) {
         this.registrationDate = registrationDate;
-    }
-
-    public String getNickName() {
-        return nickName;
-    }
-
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
     }
 
     public List<Review> getReviews() {

@@ -81,7 +81,11 @@
                 <div class="row">
                     <div class="form-group col-md-2">
                         <label for="ratingId">Ocena spotu</label>
-                        <form:input path="rating" cssClass="form-control" id="ratingId"/>
+                        <form:select path="rating" cssClass="form-control" id="ratingId">
+                            <c:forEach begin="1" end="5" var="number">
+                                <form:option value="${number}"/>
+                            </c:forEach>
+                        </form:select>
                     </div>
                 </div>
                 <div class="row">

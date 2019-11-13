@@ -21,6 +21,9 @@
     cursor: pointer;
 }
 
+.markerEdits tr{
+    background-color: lightsteelblue;
+}
 
 
 li {

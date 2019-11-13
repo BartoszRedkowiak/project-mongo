@@ -23,10 +23,6 @@
                     <form:input path="lastName" cssClass="form-control" id="lastNameId"/>
                 </div>
                 <div class="form-group">
-                    <label for="nickNameId">Nazwisko</label>
-                    <form:input path="nickName" cssClass="form-control" id="nickNameId"/>
-                </div>
-                <div class="form-group">
                     <label for="emailId">Email</label>
                     <form:input path="email" cssClass="form-control" id="emailId"/>
                 </div>

@@ -8,5 +8,8 @@
 
 <jsp:include page="elemNavbar.jsp"/>
 
+
+
+
 </body>
 </html>
