@@ -10,6 +10,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -26,9 +27,15 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-    public String userProfile(Model model){
-        //TODO zamienić raw input
-        model.addAttribute("user", userService.getOne(1l));
+    public String userProfile(Model model,
+                              HttpSession session){
+        try{
+            Long userId = (Long) session.getAttribute("userId");
+            model.addAttribute("user", userService.getOne(userId));
+        } catch (ClassCastException | NullPointerException e){
+            return "redirect:../login";
+        }
+
         return "viewUserProfile";
     }
 
