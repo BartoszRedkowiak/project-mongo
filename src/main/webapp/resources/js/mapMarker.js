@@ -2,7 +2,8 @@ var options = {
     zoom: 17,
     center: {lat: 52.237, lng: 21.017}, //Warsaw
     gestureHandling: 'auto',
-    styles: styles
+    styles: styles,
+    disableDefaultUI: true
 };
 
 function initMap() {
