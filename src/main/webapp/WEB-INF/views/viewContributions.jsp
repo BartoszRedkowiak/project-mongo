@@ -72,8 +72,7 @@
             </h5>
             <div class="card-body">
                 <div class="card-subtitle mt-1">
-                    Dodane przez: ${contribution.user.firstName} ${contribution.user.lastName}
-                    (${contribution.user.email})<br>
+                    Dodane przez: ${empty contribution.user? 'Użytkownik usunięty' : contribution.user.fullName}<br>
                     Liczba głosów: ${contribution.votes}
                     <c:if test="${marker.activeEvent == true}">
                         <form method="post" action="/markers/tricks/${marker.id}/vote">

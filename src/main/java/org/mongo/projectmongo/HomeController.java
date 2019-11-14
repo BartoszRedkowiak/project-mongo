@@ -36,7 +36,7 @@ public class HomeController {
                            Model model,
                            HttpSession session) {
         //TODO tymczasowe ustawienie
-        session.setAttribute("userId", 7l);
+        session.setAttribute("userId", 8l);
 
         if (maxDistance == null) {
             model.addAttribute("markers", markerService.getAllVisible());

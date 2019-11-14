@@ -122,7 +122,7 @@
                     <table>
                         <tr>
                             <small class="form-text text-muted">Data: ${review.created}</small>
-                            <p>${review.user.firstName} ${review.user.lastName} ocenił na ${review.rating}</p>
+                            <p>${empty review.user? 'Użytkownik usunięty' : review.user.fullName} ocenił na ${review.rating}</p>
                         </tr>
                         <tr>
                             <p>Komentarz: ${review.comment}</p>

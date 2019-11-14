@@ -14,6 +14,7 @@
     <div class="card mt-2  mb-2">
         <div class="card-body">
             <form:form method="post" modelAttribute="user">
+                <form:hidden path="registrationDate"/>
                 <div class="form-group">
                     <label for="firstNameId">Imię</label>
                     <form:input path="firstName" cssClass="form-control" id="firstNameId"/>

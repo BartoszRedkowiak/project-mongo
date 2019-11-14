@@ -122,4 +122,10 @@ public class User {
     public void setEventContributions(List<EventContribution> eventContributions) {
         this.eventContributions = eventContributions;
     }
+
+    public String getFullName(){
+        return firstName + " " + lastName;
+    }
+
+
 }
