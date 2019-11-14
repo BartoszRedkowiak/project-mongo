@@ -8,15 +8,14 @@ import org.mongo.projectmongo.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class HomeController {
@@ -32,27 +31,29 @@ public class HomeController {
 
     @GetMapping("/")
     public String homePage(HttpServletRequest request,
+                           @RequestParam(required = false, name = "maxDistance") Integer maxDistance,
+                           @RequestParam(required = false, name = "categoryId") List<Long> catIdList,
                            Model model,
                            HttpSession session) {
         //TODO tymczasowe ustawienie
         session.setAttribute("userId", 1l);
 
-        String maxDistanceString = request.getParameter("maxDistance");
-        String[] arrCatId = request.getParameterValues("categoryId");
+        //Preparation of categories' id for JPQL query
+//        String[] catIdArr = request.getParameterValues("categoryId");
+//        List<Long> catIdList = new ArrayList<>();
+//        if (catIdArr != null){
+//            catIdList = Arrays.asList(catIdArr).stream()
+//                    .map(e->Long.parseLong(e))
+//                    .collect(Collectors.toList());
+//        }
 
-        if (maxDistanceString == null) {
+        if (maxDistance == null) {
             model.addAttribute("markers", markerService.getAllVisible());
         } else {
-            try {
-                Integer maxDistanceInt = Integer.parseInt(maxDistanceString);
-                //Coordinates for Warsaw
+                //Coordinates for initial center of the map (Warsaw)
                 Double lat = 52.237;
                 Double lng = 21.017;
-                model.addAttribute("markers", markerService.getAllFiltered(lat, lng, maxDistanceInt));
-            } catch (NumberFormatException e) {
-                model.addAttribute("markers", markerService.getAllVisible());
-                model.addAttribute("errMsg", "Podano niepoprawny parametr");
-            }
+                model.addAttribute("markers", markerService.getAllFiltered(lat, lng, maxDistance, catIdList));
         }
         return "viewHome";
     }

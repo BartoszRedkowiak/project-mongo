@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -36,16 +36,21 @@ public class MarkerService implements ServiceInterface<Marker> {
         return markerRepository.findAllByVisibleTrue();
     }
 
-    public List<Marker> getAllFiltered(Double lat, Double lng, Integer distance){
+    public List<Marker> getAllFiltered(Double lat, Double lng, Integer distance, List<Long> catIdList){
         Double distanceConverted = 360.0 / 40075 * Double.valueOf(distance);
 
         Double minLat = lat - distanceConverted;
         Double maxLat = lat + distanceConverted;
         Double minLng = lng - distanceConverted;
         Double maxLng = lng + distanceConverted;
-        List<Marker> markers =  markerRepository.findAllFiltered(minLat, maxLat, minLng, maxLng);
+        List<Marker> markers = null;
 
-        System.out.println(markers.toString());
+        if (catIdList == null || catIdList.isEmpty()){
+            markers =  markerRepository.findAllFilteredNoCategories(minLat, maxLat, minLng, maxLng);
+        } else {
+            markers =  markerRepository.findAllFilteredWithCategories(minLat, maxLat, minLng, maxLng, catIdList);
+        }
+
         return markers;
     }
 
