@@ -1,6 +1,7 @@
 var options = {
     zoom: 12,
     center: {lat: 52.237, lng: 21.017}, //Warsaw
+    gestureHandling: 'auto',
     styles: [
         {
             "featureType": "administrative.country",
