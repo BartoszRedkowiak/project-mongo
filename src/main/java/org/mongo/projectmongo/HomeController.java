@@ -36,16 +36,7 @@ public class HomeController {
                            Model model,
                            HttpSession session) {
         //TODO tymczasowe ustawienie
-        session.setAttribute("userId", 1l);
-
-        //Preparation of categories' id for JPQL query
-//        String[] catIdArr = request.getParameterValues("categoryId");
-//        List<Long> catIdList = new ArrayList<>();
-//        if (catIdArr != null){
-//            catIdList = Arrays.asList(catIdArr).stream()
-//                    .map(e->Long.parseLong(e))
-//                    .collect(Collectors.toList());
-//        }
+        session.setAttribute("userId", 7l);
 
         if (maxDistance == null) {
             model.addAttribute("markers", markerService.getAllVisible());

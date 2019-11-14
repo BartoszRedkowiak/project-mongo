@@ -10,6 +10,26 @@
 
 <jsp:include page="elemNavbar.jsp"/>
 
+<c:if test="${not empty param.votingFailed}">
+    <div class="container mt-2">
+        <div class="card">
+            <div class="card-body">
+                <p style="color: red">Nie możesz dwukrotnie zagłosować na ten sam film</p>
+            </div>
+        </div>
+    </div>
+</c:if>
+
+<c:if test="${not empty param.contSuccess}">
+    <div class="container mt-2">
+        <div class="card">
+            <div class="card-body">
+                <p>Przekazano do weryfikacji administratora</p>
+            </div>
+        </div>
+    </div>
+</c:if>
+
 <c:if test="${marker.activeEvent == true}">
     <div class="container mt-2">
         <div class="card">
@@ -44,19 +64,9 @@
     </div>
 </c:if>
 
-<c:if test="${not empty param.votingFailed}">
-    <div class="container mt-2">
-        <div class="card">
-            <div class="card-body">
-                <p style="color: red">Nie możesz dwukrotnie zagłosować na ten sam film</p>
-            </div>
-        </div>
-    </div>
-</c:if>
-
 <div class="container mt-2">
     <c:forEach items="${contributions}" var="contribution">
-        <div class="card">
+        <div class="card mt-1">
             <h5 class="card-header">
                     ${contribution.name}
             </h5>

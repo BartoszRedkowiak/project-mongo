@@ -9,7 +9,8 @@ import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Entity(name = "event_contributions")
+@Entity
+@Table(name = "event_contributions")
 public class EventContribution {
 
     @Id

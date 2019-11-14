@@ -152,6 +152,10 @@ public class MarkerController {
         }
 
         Long userId = (Long) session.getAttribute("userId");
+        if (userId == null){
+            return "redirect:../../login";
+        }
+
         contribution.setIgLink(contribution.getIgLink().trim());
 
         contribution.setUser(userService.getOne(userId));
@@ -159,7 +163,7 @@ public class MarkerController {
 
         eventContributionService.save(contribution);
 
-        return "redirect:../tricks/" + markerId;
+        return "redirect:../tricks/" + markerId + "?contSuccess=true";
     }
 
     @PostMapping("tricks/{id}/vote")

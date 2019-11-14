@@ -17,7 +17,6 @@ public class EventContributionService implements ServiceInterface<EventContribut
         this.eventContributionRepository = eventContributionRepository;
     }
 
-
     @Override
     public void save(EventContribution eventContribution) {
         eventContributionRepository.save(eventContribution);
@@ -50,4 +49,5 @@ public class EventContributionService implements ServiceInterface<EventContribut
     public void delete(long id) {
         eventContributionRepository.deleteById(id);
     }
+
 }
