@@ -21,15 +21,17 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <div class="mt-1 mx-2">
                         <form method="get" action="/">
-                            <label for="distanceSlider">Odległość: </label><span id="sliderValue"></span><br>
+                            <label for="distanceSlider">Odległość: </label>
+                            <output class="ml-1" id="sliderValue">10</output>km<br>
                             <input type="range" min="1" max="20" value="10" name="maxDistance"
                                    class="custom-range"
-                                   id="distanceSlider">
+                                   id="distanceSlider"
+                                   oninput="sliderValue.value = distanceSlider.value"/>
                             <label>Rodzaj spotu</label><br>
                             <c:forEach items="${categories}" var="category">
                                 <input type="checkbox" name="categoryId" value="${category.id}"/>${category.name}<br>
                             </c:forEach>
-                            <input class="btn btn-primary" type="submit" value="Filtruj">
+                            <input class="btn btn-primary btn-sm" type="submit" value="Filtruj">
                         </form>
                     </div>
                 </div>
