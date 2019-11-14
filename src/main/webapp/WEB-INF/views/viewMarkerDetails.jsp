@@ -5,36 +5,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <jsp:include page="elemHeadLinks.jsp"/>
-</head>
-<body>
-<jsp:include page="elemNavbar.jsp"/>
-
-<script>
-
-    function initMap() {
-        // var map = new google.maps.Map(document.getElementById('map'), options);
-
+    <script>
         var streetViewOptions = {
             position: {lat: ${marker.lat}, lng: ${marker.lng}},
             visible: true,
             clickToGo: false
         };
 
-        function addMarker() {
-            var marker = new google.maps.Marker({
-                position: ${marker.lat}, lng: ${marker.lng},
-                map: view
-            });
-        }
+        var marker = new google.maps.Marker({
+            position: ${marker.lat}, lng: ${marker.lng},
+            map: view
+        })
+    </script>
+    <jsp:include page="elemHeadLinks.jsp"/>
+    <script src="<c:url value="/resources/js/mapMarkerDetails.js"/>"></script>
+</head>
+<body>
+<jsp:include page="elemNavbar.jsp"/>
 
-        var view = new google.maps.StreetViewPanorama(map, streetViewOptions);
-
-        addMarker();
-    }
-
-
-</script>
 <div class="container-fluid" id="map">
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAVcoNM2MuCYiuF08TgYY-D8kQhD08MA8&callback=initMap">
@@ -122,7 +110,8 @@
                     <table>
                         <tr>
                             <small class="form-text text-muted">Data: ${review.created}</small>
-                            <p>${empty review.user? 'Użytkownik usunięty' : review.user.fullName} ocenił na ${review.rating}</p>
+                            <p>${empty review.user? 'Użytkownik usunięty' : review.user.fullName} ocenił
+                                na ${review.rating}</p>
                         </tr>
                         <tr>
                             <p>Komentarz: ${review.comment}</p>

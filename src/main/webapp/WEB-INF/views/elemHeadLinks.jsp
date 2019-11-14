@@ -11,3 +11,4 @@
 <link href="<c:url value="/resources/css/style.css"/>" rel="stylesheet">
 <script src="<c:url value="/resources/js/mapOptions.js"/>"></script>
 <script src="<c:url value="/resources/js/general.js"/>"></script>
+

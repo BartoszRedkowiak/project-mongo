@@ -1,25 +1,15 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
     <jsp:include page="elemHeadLinks.jsp"/>
+    <script src="<c:url value="/resources/js/mapMarker.js"/>"></script>
 </head>
 <body>
-<script>
-    function initMap() {
-        // New map
-        var map = new google.maps.Map(document.getElementById('map'), options);
-        map.setZoom(17);
-        // Gather position to input fields with map movement
-        google.maps.event.addListener(map, 'center_changed', function () {
-            document.getElementById('default_latitude').value = map.getCenter().lat();
-            document.getElementById('default_longitude').value = map.getCenter().lng();
-        });
-        $('<div/>').addClass('centerMarker').appendTo(map.getDiv());
-    }
-</script>
 <jsp:include page="elemNavbar.jsp"/>
+
 <div class="container-fluid">
     <div class="card mt-2 mb-2">
         <h5 class="card-header">
