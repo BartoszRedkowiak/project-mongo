@@ -174,7 +174,7 @@ public class MarkerController {
         List<User> usersThatVoted = votedContribution.getUsersThatVoted();
 
         if (usersThatVoted.contains(user)){
-            return "redirect:../" + markerId;
+            return "redirect:../" + markerId + "?votingFailed=true";
         }
         usersThatVoted.add(user);
         votedContribution.setUsersThatVoted(usersThatVoted);

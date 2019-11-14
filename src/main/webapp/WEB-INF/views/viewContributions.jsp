@@ -11,8 +11,8 @@
 <jsp:include page="elemNavbar.jsp"/>
 
 <c:if test="${marker.activeEvent == true}">
-    <div class="container">
-        <div class="card mt-2">
+    <div class="container mt-2">
+        <div class="card">
             <div class="card-body">
                 <form:form modelAttribute="newContribution" method="post">
                     <div class="row">
@@ -44,9 +44,19 @@
     </div>
 </c:if>
 
-<div class="container">
+<c:if test="${not empty param.votingFailed}">
+    <div class="container mt-2">
+        <div class="card">
+            <div class="card-body">
+                <p style="color: red">Nie możesz dwukrotnie zagłosować na ten sam film</p>
+            </div>
+        </div>
+    </div>
+</c:if>
+
+<div class="container mt-2">
     <c:forEach items="${contributions}" var="contribution">
-        <div class="card mt-2">
+        <div class="card">
             <h5 class="card-header">
                     ${contribution.name}
             </h5>
