@@ -84,7 +84,7 @@
                                         <a class="btn btn-success btn-sm mx-1"
                                            href="/markers/acceptEdit/${edit.id}">Akceptuj</a><br>
                                         <a class="btn btn-danger btn-sm mx-1" href="#"
-                                           onclick="confirmDelete(${edit.id})">Odrzuć</a>
+                                           onclick="confirmDelete(${edit.id}, '/markers/delete/')">Odrzuć</a>
                                     </div>
                                 </td>
                             </tr>
