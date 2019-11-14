@@ -6,6 +6,9 @@
 <head>
     <jsp:include page="elemHeadLinks.jsp"/>
     <script src="<c:url value="/resources/js/mapMarker.js"/>"></script>
+    <script>
+        options.center = {lat: ${empty marker.lat? 52.237 : marker.lat}, lng: ${empty marker.lng? 21.017 : marker.lng}}
+    </script>
 </head>
 <body>
 <jsp:include page="elemNavbar.jsp"/>

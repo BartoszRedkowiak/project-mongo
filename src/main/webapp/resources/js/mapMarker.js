@@ -1,7 +1,13 @@
+var options = {
+    zoom: 17,
+    center: {lat: 52.237, lng: 21.017}, //Warsaw
+    gestureHandling: 'auto',
+    styles: styles
+};
+
 function initMap() {
     // New map
     var map = new google.maps.Map(document.getElementById('mapMarker'), options);
-    map.setZoom(17);
     // Gather position to input fields with map movement
     google.maps.event.addListener(map, 'center_changed', function () {
         document.getElementById('default_latitude').value = map.getCenter().lat();

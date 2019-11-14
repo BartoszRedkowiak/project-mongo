@@ -1,3 +1,10 @@
+var options = {
+    zoom: 12,
+    center: {lat: 52.237, lng: 21.017}, //Warsaw
+    gestureHandling: 'auto',
+    styles: styles
+};
+
 function initMap() {
     // New map
     var map = new google.maps.Map(document.getElementById('mapHome'), options);
@@ -38,3 +45,5 @@ function initMap() {
         }
     }
 }
+
+
