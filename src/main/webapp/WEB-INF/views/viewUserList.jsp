@@ -32,8 +32,8 @@
                     <td>${user.lastName}</td>
                     <td>${user.email}</td>
                     <td>
-                        <button class="btn btn-warning" onclick="window.location.href = '/users/edit/${user.id}'">Edytuj</button>
-                        <button class="btn btn-danger" onclick="confirmDelete(${user.id}, '/users/delete/')">Usuń</button>
+                        <button class="btn btn-warning m-1" onclick="window.location.href = '/users/edit/${user.id}'">Edytuj</button>
+                        <button class="btn btn-danger m-1" onclick="confirmDelete(${user.id}, '/users/delete/')">Usuń</button>
                     </td>
                 </tr>
             </c:forEach>

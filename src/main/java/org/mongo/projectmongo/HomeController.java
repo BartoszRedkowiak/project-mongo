@@ -73,7 +73,7 @@ public class HomeController {
     }
 
     @ModelAttribute("categories")
-    public List<Category> categories() {
+    public List<Category> navbarCategories() {
         return categoryService.getSubCategories();
     }
 

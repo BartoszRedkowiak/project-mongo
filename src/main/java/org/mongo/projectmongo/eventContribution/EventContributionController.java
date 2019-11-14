@@ -1,5 +1,7 @@
 package org.mongo.projectmongo.eventContribution;
 
+import org.mongo.projectmongo.category.Category;
+import org.mongo.projectmongo.category.CategoryService;
 import org.mongo.projectmongo.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,15 +11,19 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/contributions")
 public class EventContributionController {
 
     private final EventContributionService contributionService;
+    private final CategoryService categoryService;
 
     @Autowired
-    public EventContributionController(EventContributionService contributionService) {
+    public EventContributionController(EventContributionService contributionService, CategoryService categoryService) {
         this.contributionService = contributionService;
+        this.categoryService = categoryService;
     }
 
     @GetMapping("/list")
@@ -40,14 +46,12 @@ public class EventContributionController {
         return "redirect:../list";
     }
 
-
-
-
-
-
+    @ModelAttribute("categories")
+    public List<Category> navbarCategories() {
+        return categoryService.getSubCategories();
+    }
 
     @ModelAttribute("userLogin")
     public User user(){ return new User(); }
-
 
 }

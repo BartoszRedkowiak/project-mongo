@@ -22,9 +22,9 @@
 <jsp:include page="elemNavbar.jsp"/>
 <div class="container-fluid">
     <div class="card mt-2 mb-2">
-        <h3 class="card-header">
+        <h5 class="card-header">
             ${empty marker.id ? 'Dodaj spot' : 'Edytuj spot'}
-        </h3>
+        </h5>
         <div class="container-fluid" id="map">
             <script async defer
                     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCAVcoNM2MuCYiuF08TgYY-D8kQhD08MA8&callback=initMap">

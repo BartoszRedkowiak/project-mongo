@@ -108,6 +108,11 @@ public class UserController {
     @ModelAttribute("userLogin")
     public User user(){ return new User(); }
 
+    @ModelAttribute("categories")
+    public List<Category> navbarCategories() {
+        return categoryService.getSubCategories();
+    }
+
 //    public String logout(){}
 
 

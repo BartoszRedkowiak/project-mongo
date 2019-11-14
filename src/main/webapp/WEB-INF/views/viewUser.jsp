@@ -12,6 +12,7 @@
 
 <div class="container-fluid">
     <div class="card mt-2  mb-2">
+        <h5 class="card-header">${empty user.id ? 'Rejestracja użytkownika' : 'Edycja danych'}</h5>
         <div class="card-body">
             <form:form method="post" modelAttribute="user">
                 <form:hidden path="registrationDate"/>

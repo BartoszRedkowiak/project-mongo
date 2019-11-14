@@ -10,28 +10,28 @@
 <jsp:include page="elemNavbar.jsp"/>
 
 <div class="container-fluid mt-1 mx-1">
-    <header>Profil użytkownika</header>
     <div class="card mt-2">
+        <h5 class="card-header">Dane użytkownika</h5>
         <div class="card-body">
-            <table class="table table-responsive-sm">
+            <table class="table table-responsive-sm table-borderless">
                 <thead class="thead-dark">
                 <tr></tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td>Imię</td>
+                    <td scope="row">Imię</td>
                     <td>${user.firstName}</td>
                 </tr>
                 <tr>
-                    <td>Nazwisko</td>
+                    <td scope="row">Nazwisko</td>
                     <td>${user.lastName}</td>
                 </tr>
                 <tr>
-                    <td>Email</td>
+                    <td scope="row">Email</td>
                     <td>${user.email}</td>
                 </tr>
                 <tr>
-                    <td>Kategorie</td>
+                    <td scope="row">Kategorie</td>
                     <td>
                         <c:forEach items="${user.sportTypes}" var="category">
                             ${category.name}<br>

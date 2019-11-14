@@ -132,12 +132,16 @@ public class MarkerController {
         return "redirect:../details/" + markerId;
     }
 
-    @GetMapping("/tricks/{id}")
-    public String tricks(Model model,
-                         @PathVariable Long id){
+    public void addAttributesToView(Model model, Long id){
         model.addAttribute("newContribution", new EventContribution());
         model.addAttribute("contributions", eventContributionService.getAllValidatedForMarker(id));
         model.addAttribute("marker", markerService.getOne(id));
+    }
+
+    @GetMapping("/tricks/{id}")
+    public String tricks(Model model,
+                         @PathVariable Long id){
+        addAttributesToView(model, id);
         return "viewContributions";
     }
 
@@ -145,9 +149,11 @@ public class MarkerController {
     public String tricks(@Valid @ModelAttribute("newContribution") EventContribution contribution,
                          BindingResult result,
                          @PathVariable(name = "id") Long markerId,
-                         HttpSession session){
+                         HttpSession session,
+                         Model model){
 
         if (result.hasErrors()){
+            addAttributesToView(model, markerId);
             return "viewContributions";
         }
 

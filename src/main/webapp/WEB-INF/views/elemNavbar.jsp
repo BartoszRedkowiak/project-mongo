@@ -16,7 +16,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Filtruj
+                    Filtruj mapę
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <div class="mt-1 mx-2">
