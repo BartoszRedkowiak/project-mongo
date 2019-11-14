@@ -4,7 +4,22 @@
     width: 100%;
 }
 
-#map .centerMarker {
+#mapHome {
+    height: 915px;
+    width: 100%;
+}
+
+#mapMarker {
+    height: 700px;
+    width: 100%;
+}
+
+
+
+
+
+
+#mapMarker .centerMarker {
     position: absolute;
     /*url of the marker*/
     background: url(http://maps.gstatic.com/mapfiles/markers2/marker.png) no-repeat;

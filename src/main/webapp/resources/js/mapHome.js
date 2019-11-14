@@ -1,6 +1,6 @@
 function initMap() {
     // New map
-    var map = new google.maps.Map(document.getElementById('map'), options);
+    var map = new google.maps.Map(document.getElementById('mapHome'), options);
 
     //Add bike lane layer
     // var bikeLayer = new google.maps.BicyclingLayer();
