@@ -110,6 +110,27 @@ public class MarkerController {
         return "viewMarkerDetails";
     }
 
+    @PostMapping("/details/{id}")
+    public String addReview(@PathVariable("id") Long markerId,
+                            @Valid @ModelAttribute("newReview") Review review,
+                            BindingResult result,
+                            HttpSession session){
+        if (result.hasErrors()){
+            return "viewMarkerDetails";
+        }
+
+        //TODO do zmiany i walidacji po wzdrożeniu logowania
+        Long userId = (Long) session.getAttribute("userId");
+        if (userId == null){
+            return "redirect:../../login";
+        }
+
+        review.setId(null); //to prevent binding markerId from URI
+        review.setUser(userService.getOne(userId));
+        review.setMarker(markerService.getOne(markerId));
+        reviewService.save(review);
+        return "redirect:../details/" + markerId;
+    }
 
     @GetMapping("/tricks/{id}")
     public String tricks(Model model,
@@ -162,22 +183,6 @@ public class MarkerController {
         return "redirect:../" + markerId;
     }
 
-
-    @PostMapping("/details/{id}")
-    public String addReview(@RequestParam String markerId,
-                            @Valid @ModelAttribute("newReview") Review review,
-                            BindingResult result,
-                            HttpSession session){
-        if (result.hasErrors()){
-            return "viewMarkerDetails";
-        }
-        //TODO do zmiany i walidacji po wzdrożeniu logowania
-        Long userId = (Long) session.getAttribute("userId");
-        review.setUser(userService.getOne(userId));
-        review.setMarker(markerService.getOne(Long.parseLong(markerId)));
-        reviewService.save(review);
-        return "redirect:../details/" + markerId;
-    }
 
     @GetMapping("/visibilityTog/{id}")
     public String toggleVisible(@PathVariable Long id){

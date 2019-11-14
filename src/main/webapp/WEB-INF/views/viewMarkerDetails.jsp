@@ -76,7 +76,6 @@
         <div class="card-body">
             <div class="mx-1">
                 <form:form method="post" modelAttribute="newReview">
-                    <input name="markerId" value="${marker.id}" hidden>
                     <div class="row">
                         <div class="form-group col-md-2">
                             <label for="ratingId">Ocena spotu</label>

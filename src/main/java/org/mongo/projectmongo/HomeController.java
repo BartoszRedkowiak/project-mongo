@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -55,6 +56,21 @@ public class HomeController {
         }
         return "viewHome";
     }
+
+
+    @GetMapping("/login")
+    public String login(Model model){
+        model.addAttribute("user", new User());
+
+        return "viewLogin";
+    }
+
+    @PostMapping("/login")
+    public String loginVerification(){
+        return "redirect:/";
+    }
+
+
 
     @ModelAttribute("userLogin")
     public User user(){ return new User(); }
