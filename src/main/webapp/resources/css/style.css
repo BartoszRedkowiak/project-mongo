@@ -1,24 +1,15 @@
-
 #map {
-    height: 1000px;
+    height: 600px;
     width: 100%;
 }
-
 #mapHome {
     height: 915px;
     width: 100%;
 }
-
 #mapMarker {
     height: 700px;
     width: 100%;
 }
-
-
-
-
-
-
 #mapMarker .centerMarker {
     position: absolute;
     /*url of the marker*/
