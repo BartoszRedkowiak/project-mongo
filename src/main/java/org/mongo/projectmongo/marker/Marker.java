@@ -27,7 +27,7 @@ public class Marker implements Cloneable {
     @Column(nullable = false)
     private Double lng;
 
-    @Size(min = 5, max = 30)
+    @Size(min = 5, max = 50)
     @Column(nullable = false)
     private String name;
 
