@@ -95,7 +95,8 @@
     <div class="container">
         <div class="card mt-2">
             <div class="card-body">
-                Brak triczków dla spotu :(
+                <span>Brak triczków dla spotu :(</span>
+                <br><a href="/markers/details/${marker.id}" class="btn btn-primary">Powrót</a>
             </div>
         </div>
     </div>

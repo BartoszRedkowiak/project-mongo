@@ -64,6 +64,9 @@
                             </tr>
                         </table>
                     </div>
+                    <div class="row">
+                        <a href="/markers/tricks/${marker.id}" class="btn btn-primary">Zobacz triczki na spocie</a>
+                    </div>
                     <form:form method="post" modelAttribute="newReview">
                         <div class="row">
                             <div class="col-md-3">
