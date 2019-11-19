@@ -62,6 +62,10 @@ public class HomeController {
         return "redirect:/";
     }
 
+    @PostMapping("/logout")
+    public String logout(){
+        return "redirect:/";
+    }
 
 
     @ModelAttribute("userLogin")

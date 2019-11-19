@@ -22,7 +22,8 @@
                     <div class="mt-1 mx-2">
                         <form method="get" action="/">
                             <label for="distanceSlider">Odległość: </label>
-                            <output class="ml-1" id="sliderValue">10</output>km<br>
+                            <output class="ml-1" id="sliderValue">10</output>
+                            km<br>
                             <input type="range" min="1" max="20" value="10" name="maxDistance"
                                    class="custom-range"
                                    id="distanceSlider"
@@ -56,18 +57,25 @@
                     <form:form action="/users/login" method="post" class="px-4 py-3" modelAttribute="userLogin">
                         <div class="form-group">
                             <label for="loginEmail">Adres email</label>
-                            <form:input path="email" type="email" class="form-control" id="loginEmail" placeholder="email@example.com"/>
+                            <form:input path="email" type="email" class="form-control" id="loginEmail"
+                                        placeholder="email@example.com"/>
                         </div>
                         <div class="form-group">
                             <label for="loginPassword">Hasło</label>
-                            <form:password path="password" class="form-control" id="loginPassword" placeholder="Password"/>
+                            <form:password path="password" class="form-control" id="loginPassword"
+                                           placeholder="Password"/>
                         </div>
                         <button type="submit" class="btn btn-primary">Zaloguj</button>
                     </form:form>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="/users/register">Rejestracja</a>
                     <a class="dropdown-item" href="/users/profile">Profil</a>
-                    <a class="dropdown-item" href="#">Wyloguj</a>
+                    <div class="dropdown-item">
+                        <form action="<c:url value="/logout"/>" method="post">
+                            <input class="fa fa-id-badge btn btn-primary btn-sm" type="submit" value="Wyloguj">
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                        </form>
+                    </div>
                 </div>
             </li>
         </ul>

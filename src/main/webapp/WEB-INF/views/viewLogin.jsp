@@ -26,6 +26,7 @@
                     <form:password path="password" cssClass="form-control" id="passwordOneId"/>
                 </div>
                 <input class="btn btn-dark" type="submit" value="Zapisz"/>
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             </form:form>
         </div>
     </div>

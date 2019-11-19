@@ -146,7 +146,7 @@ public class MarkerController {
     }
 
     @PostMapping("/tricks/{id}")
-    public String tricks(@Valid @ModelAttribute("newContribution") EventContribution contribution,
+    public String addContributionToSpot(@Valid @ModelAttribute("newContribution") EventContribution contribution,
                          BindingResult result,
                          @PathVariable(name = "id") Long markerId,
                          HttpSession session,
@@ -192,7 +192,6 @@ public class MarkerController {
         eventContributionService.update(votedContribution);
         return "redirect:../" + markerId;
     }
-
 
     @GetMapping("/visibilityTog/{id}")
     public String toggleVisible(@PathVariable Long id){
