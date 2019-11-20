@@ -1,12 +1,22 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Title</title>
+    <jsp:include page="elemHeadLinks.jsp"/>
 </head>
 <body>
 
-<h1>Dostęp zabroniony</h1>
+<jsp:include page="elemNavbar.jsp"/>
+
+<div class="container">
+    <div class="card mt-2  mb-2">
+        <div class="card-body">
+            Dostęp do elementu aplikacji ograniczony
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
