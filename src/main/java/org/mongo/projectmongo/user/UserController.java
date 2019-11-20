@@ -3,6 +3,7 @@ package org.mongo.projectmongo.user;
 import org.mongo.projectmongo.category.Category;
 import org.mongo.projectmongo.category.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -113,7 +114,15 @@ public class UserController {
         return categoryService.getSubCategories();
     }
 
-//    public String logout(){}
+    @GetMapping("/admin")
+    @ResponseBody
+    public String admin(@AuthenticationPrincipal CurrentUser customUser) {
+        User entityUser = customUser.getUser();
+        return "Hello " + entityUser.getUsername();
+    }
+
+
+
 
 
 

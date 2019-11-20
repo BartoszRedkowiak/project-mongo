@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
@@ -37,45 +38,52 @@
                     </div>
                 </div>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Admin
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/markers/list">Lista markerów</a>
-                    <a class="dropdown-item" href="/users/list">Lista użytkowników</a>
-                    <a class="dropdown-item" href="/contributions/list">Lista kontrybucji</a>
-                </div>
-            </li>
+            <sec:authorize access="hasRole('ADMIN')">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Admin
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/markers/list">Lista markerów</a>
+                        <a class="dropdown-item" href="/users/list">Lista użytkowników</a>
+                        <a class="dropdown-item" href="/contributions/list">Lista kontrybucji</a>
+                    </div>
+                </li>
+            </sec:authorize>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Użytkownik
                 </a>
                 <div class="dropdown-menu">
-                    <form:form action="/users/login" method="post" class="px-4 py-3" modelAttribute="userLogin">
-                        <div class="form-group">
-                            <label for="loginEmail">Adres email</label>
-                            <form:input path="email" type="email" class="form-control" id="loginEmail"
-                                        placeholder="email@example.com"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="loginPassword">Hasło</label>
-                            <form:password path="password" class="form-control" id="loginPassword"
-                                           placeholder="Password"/>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Zaloguj</button>
-                    </form:form>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/users/register">Rejestracja</a>
-                    <a class="dropdown-item" href="/users/profile">Profil</a>
-                    <div class="dropdown-item">
-                        <form action="<c:url value="/logout"/>" method="post">
-                            <input class="fa fa-id-badge btn btn-primary btn-sm" type="submit" value="Wyloguj">
+                    <sec:authorize access="isAnonymous()">
+                        <form:form action="/users/login" method="post" class="px-4 py-3" modelAttribute="userLogin">
+                            <div class="form-group">
+                                <label for="loginEmail">Adres email</label>
+                                <form:input path="email" type="email" class="form-control" id="loginEmail"
+                                            placeholder="email@example.com"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="loginPassword">Hasło</label>
+                                <form:password path="password" class="form-control" id="loginPassword"
+                                               placeholder="Password"/>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Zaloguj</button>
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                        </form>
-                    </div>
+                        </form:form>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/users/register">Rejestracja</a>
+                    </sec:authorize>
+                    <sec:authorize access="isAuthenticated()">
+                        <a class="dropdown-item" href="/users/profile">Profil</a>
+                        <div class="dropdown-item">
+                            <form action="<c:url value="/logout"/>" method="post">
+                                <input class="fa fa-id-badge btn btn-primary btn-sm" type="submit" value="Wyloguj">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                            </form>
+                        </div>
+                    </sec:authorize>
                 </div>
             </li>
         </ul>
