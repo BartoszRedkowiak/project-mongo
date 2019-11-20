@@ -51,15 +51,8 @@ public class HomeController {
 
 
     @GetMapping("/login")
-    public String login(Model model){
-        model.addAttribute("user", new User());
-
+    public String login(){
         return "viewLogin";
-    }
-
-    @PostMapping("/login")
-    public String loginVerification(){
-        return "redirect:/";
     }
 
     @PostMapping("/logout")

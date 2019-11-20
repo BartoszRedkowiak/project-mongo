@@ -58,20 +58,19 @@
                 </a>
                 <div class="dropdown-menu">
                     <sec:authorize access="isAnonymous()">
-                        <form:form action="/users/login" method="post" class="px-4 py-3" modelAttribute="userLogin">
+<%--login form--%>
+                        <form action="/login" method="post" class="px-4 py-3">
                             <div class="form-group">
-                                <label for="loginEmail">Adres email</label>
-                                <form:input path="email" type="email" class="form-control" id="loginEmail"
-                                            placeholder="email@example.com"/>
+                                <label for="loginUsername">Login</label>
+                                <input type="text" class="form-control" id="loginUsername" name="username" placeholder="login"/>
                             </div>
                             <div class="form-group">
                                 <label for="loginPassword">Hasło</label>
-                                <form:password path="password" class="form-control" id="loginPassword"
-                                               placeholder="Password"/>
+                                <input type="password" class="form-control" id="loginPassword" name="password" placeholder="hasło"/>
                             </div>
                             <button type="submit" class="btn btn-primary">Zaloguj</button>
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                        </form:form>
+                        </form>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/users/register">Rejestracja</a>
                     </sec:authorize>
