@@ -55,9 +55,9 @@ public class HomeController {
         return "viewLogin";
     }
 
-    @PostMapping("/logout")
-    public String logout(){
-        return "redirect:/";
+    @GetMapping("/logoutSuccess")
+    public String logoutHandler(){
+        return "viewLogout";
     }
 
 

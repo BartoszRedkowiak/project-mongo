@@ -23,7 +23,7 @@
                 </div>
                 <div class="form-group">
                     <label for="passwordOneId">Hasło</label>
-                    <input type="password" name="password" cssClass="form-control" id="passwordOneId"/>
+                    <input type="password" name="password" class="form-control" id="passwordOneId"/>
                 </div>
                 <input class="btn btn-dark" type="submit" value="Zapisz"/>
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

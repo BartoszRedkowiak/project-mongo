@@ -62,13 +62,13 @@
                         <form action="/login" method="post" class="px-4 py-3">
                             <div class="form-group">
                                 <label for="loginUsername">Login</label>
-                                <input type="text" class="form-control" id="loginUsername" name="username" placeholder="login"/>
+                                <input type="text" class="form-control" id="loginUsername" name="username"/>
                             </div>
                             <div class="form-group">
                                 <label for="loginPassword">Hasło</label>
-                                <input type="password" class="form-control" id="loginPassword" name="password" placeholder="hasło"/>
+                                <input type="password" class="form-control" id="loginPassword" name="password"/>
                             </div>
-                            <button type="submit" class="btn btn-primary">Zaloguj</button>
+                            <button type="submit" class="btn btn-primary btn-sm">Zaloguj</button>
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                         </form>
                         <div class="dropdown-divider"></div>
