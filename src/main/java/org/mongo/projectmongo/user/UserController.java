@@ -1,5 +1,6 @@
 package org.mongo.projectmongo.user;
 
+import org.hibernate.Hibernate;
 import org.mongo.projectmongo.category.Category;
 import org.mongo.projectmongo.category.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,15 +29,12 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-    public String userProfile(Model model,
-                              HttpSession session){
-        try{
-            Long userId = (Long) session.getAttribute("userId");
-            model.addAttribute("user", userService.getOne(userId));
-        } catch (ClassCastException | NullPointerException e){
-            return "redirect:../login";
-        }
+    public String userProfile(@AuthenticationPrincipal CurrentUser customUser,
+                              Model model){
+        User user = customUser.getUser();
+//        user = userService.initialize(user);
 
+        model.addAttribute("user", user);
         return "viewUserProfile";
     }
 

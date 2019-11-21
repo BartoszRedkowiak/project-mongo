@@ -6,9 +6,11 @@ import org.mongo.projectmongo.eventContribution.EventContribution;
 import org.mongo.projectmongo.eventContribution.EventContributionService;
 import org.mongo.projectmongo.review.Review;
 import org.mongo.projectmongo.review.ReviewService;
+import org.mongo.projectmongo.user.CurrentUser;
 import org.mongo.projectmongo.user.User;
 import org.mongo.projectmongo.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -58,7 +60,7 @@ public class MarkerController {
             return "viewMarker";
         }
         markerService.save(marker);
-        return "redirect:list";
+        return "redirect:../";
     }
 
     @GetMapping("/delete/{id}")
@@ -84,7 +86,7 @@ public class MarkerController {
         //TODO dodać if z weryfikacją userOrAdmin
         markerService.saveEdit(marker);
 
-        return "redirect:../list";
+        return "redirect:../../";
     }
 
     @GetMapping("/acceptEdit/{id}")
@@ -114,19 +116,15 @@ public class MarkerController {
     public String addReview(@PathVariable("id") Long markerId,
                             @Valid @ModelAttribute("newReview") Review review,
                             BindingResult result,
-                            HttpSession session){
+                            @AuthenticationPrincipal CurrentUser customUser){
         if (result.hasErrors()){
             return "viewMarkerDetails";
         }
 
-        //TODO do zmiany i walidacji po wzdrożeniu logowania
-        Long userId = (Long) session.getAttribute("userId");
-        if (userId == null){
-            return "redirect:../../login";
-        }
+        User user = customUser.getUser();
 
         review.setId(null); //to prevent binding markerId from URI
-        review.setUser(userService.getOne(userId));
+        review.setUser(user);
         review.setMarker(markerService.getOne(markerId));
         reviewService.save(review);
         return "redirect:../details/" + markerId;

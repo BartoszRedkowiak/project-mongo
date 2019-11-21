@@ -18,7 +18,7 @@
         <div class="card-body">
             <form method="post">
                 <div class="form-group">
-                    <label for="userNameId">Email</label>
+                    <label for="userNameId">Login</label>
                     <input type="text" name="username" class="form-control" id="userNameId"/>
                 </div>
                 <div class="form-group">

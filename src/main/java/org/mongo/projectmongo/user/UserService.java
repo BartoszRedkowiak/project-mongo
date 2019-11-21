@@ -1,5 +1,6 @@
 package org.mongo.projectmongo.user;
 
+import org.hibernate.Hibernate;
 import org.mongo.projectmongo.category.CategoryRepository;
 import org.mongo.projectmongo.eventContribution.EventContributionRepository;
 import org.mongo.projectmongo.review.ReviewRepository;
@@ -72,4 +73,11 @@ public class UserService implements ServiceInterface<User> {
         eventContributionRepository.unbindUserFromContributionVotes(id);
         userRepository.deleteById(id);
     }
+
+//    public User initialize(User user){
+//        Hibernate.initialize(user.getSportTypes());
+//        return user;
+//    }
+
+
 }

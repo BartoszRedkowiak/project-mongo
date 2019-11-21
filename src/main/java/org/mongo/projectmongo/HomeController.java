@@ -35,9 +35,6 @@ public class HomeController {
                            @RequestParam(required = false, name = "categoryId") List<Long> catIdList,
                            Model model,
                            HttpSession session) {
-        //TODO tymczasowe ustawienie
-        session.setAttribute("userId", 1l);
-
         if (maxDistance == null) {
             model.addAttribute("markers", markerService.getAllVisible());
         } else {
