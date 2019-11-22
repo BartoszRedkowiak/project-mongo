@@ -74,10 +74,5 @@ public class UserService implements ServiceInterface<User> {
         userRepository.deleteById(id);
     }
 
-//    public User initialize(User user){
-//        Hibernate.initialize(user.getSportTypes());
-//        return user;
-//    }
-
 
 }

@@ -4,6 +4,7 @@ import org.hibernate.Hibernate;
 import org.mongo.projectmongo.category.Category;
 import org.mongo.projectmongo.category.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -31,8 +33,8 @@ public class UserController {
     @GetMapping("/profile")
     public String userProfile(@AuthenticationPrincipal CurrentUser customUser,
                               Model model){
-        User user = customUser.getUser();
-//        user = userService.initialize(user);
+        //TODO optymalizacja - rozwiązanie problemu lazy initialization przez spring security
+        User user = userService.getOne(customUser.getUser().getId());
 
         model.addAttribute("user", user);
         return "viewUserProfile";
