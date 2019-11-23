@@ -22,7 +22,7 @@
                     <th scope="col">Nazwa</th>
                     <th scope="col">Użytkownik</th>
                     <th scope="col">Marker Id</th>
-                    <th scope="col">Zweryfikowano</th>
+                    <th scope="col">Widoczne</th>
                     <th scope="col">Akcje</th>
                 </tr>
                 </thead>
@@ -35,8 +35,7 @@
                         <td>${contribution.user.email}</td>
                         <td>${contribution.marker.id}</td>
                         <td>
-                                ${contribution.validated == true? 'TAK' : 'NIE'}
-                            <a class="btn btn-dark btn-sm ml-1 my-1" href="/contributions/validate/${contribution.id}">Toggle</a>
+                            <a class="btn ${contribution.validated == true? 'btn-success' : 'btn-secondary'} btn-sm ml-1 my-1" href="/contributions/validate/${contribution.id}">${contribution.validated == true? 'TAK' : 'NIE'}</a>
                         </td>
                         <td>
                             <div class="row">
