@@ -15,7 +15,6 @@
         <h5 class="card-header">${empty user.id ? 'Rejestracja użytkownika' : 'Edycja danych'}</h5>
         <div class="card-body">
             <form:form method="post" modelAttribute="user">
-                <form:hidden path="registrationDate"/>
                 <div class="form-group">
                     <label for="userNameId">Login</label>
                     <form:input path="username" cssClass="form-control" id="userNameId"/>

@@ -49,7 +49,6 @@ public class UserController {
     @GetMapping("/register")
     public String add(Model model){
         model.addAttribute("user", new User());
-//        model.addAttribute("mainCategories", categoryService.getMainCategories());
         return "viewUser";
     }
 
@@ -90,6 +89,7 @@ public class UserController {
     @PostMapping("/edit/{id}")
     public String edit(@Valid User user,
                        BindingResult result){
+        //TODO weryfikacja przpeuszczająca w przypadku braku wpisania hasła
         if (result.hasErrors()){
             return "viewUser";
         }
