@@ -48,7 +48,14 @@
                             </tr>
                             <tr>
                                 <th scope="row">Średnia ocena</th>
-                                <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${rating}"/></td>
+                                <td>
+                                    <c:if test="${rating == 0}">
+                                        Brak ocen
+                                    </c:if>
+                                    <c:if test="${rating != 0}">
+                                        <fmt:formatNumber type="number" maxFractionDigits="2" value="${rating}"/>
+                                    </c:if>
+                                </td>
                             </tr>
                             <tr>
                                 <th scope="row">Opis</th>
@@ -65,10 +72,12 @@
                         </table>
                     </div>
                     <div class="row">
-                        <a href="/markers/tricks/${marker.id}" class="btn btn-primary">Zobacz triczki na spocie</a>
+                        <div class="col-md-12">
+                            <a href="/markers/tricks/${marker.id}" class="btn btn-primary">Zobacz triczki na spocie</a>
+                        </div>
                     </div>
                     <form:form method="post" modelAttribute="newReview">
-                        <div class="row">
+                        <div class="row mt-2">
                             <div class="col-md-3">
                                 <label for="ratingId">Ocena spotu</label>
                                 <form:select path="rating" cssClass="form-control" id="ratingId">
@@ -110,15 +119,16 @@
         <c:forEach items="${marker.reviews}" var="review">
             <div class="card mt-1">
                 <div class="card-body">
-                <div class="row">
-                    <small class="form-text text-muted">Data: ${review.created}</small>
-                </div>
-                <div class="row">
-                        ${empty review.user? 'Użytkownik usunięty' : review.user.fullName} ocenił na ${review.rating}
-                </div>
-                <div class="row">
-                    Komentarz: ${review.comment}
-                </div>
+                    <div class="row">
+                        <small class="form-text text-muted">Data: ${review.created}</small>
+                    </div>
+                    <div class="row">
+                            ${empty review.user? 'Użytkownik usunięty' : review.user.fullName} ocenił
+                        na ${review.rating}
+                    </div>
+                    <div class="row">
+                        Komentarz: ${review.comment}
+                    </div>
                 </div>
             </div>
 
