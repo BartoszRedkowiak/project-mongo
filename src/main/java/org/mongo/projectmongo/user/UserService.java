@@ -1,6 +1,5 @@
 package org.mongo.projectmongo.user;
 
-import org.hibernate.Hibernate;
 import org.mongo.projectmongo.category.CategoryRepository;
 import org.mongo.projectmongo.eventContribution.EventContributionRepository;
 import org.mongo.projectmongo.review.ReviewRepository;
@@ -53,8 +52,6 @@ public class UserService implements ServiceInterface<User> {
 
     public User getOneByEmail(String email){ return userRepository.findFirstByEmail(email); }
 
-    public User getOneByUserName(String username){ return userRepository.findByUsername(username); }
-
     @Override
     public List<User> getAll() {
         return userRepository.findAll();
@@ -62,6 +59,7 @@ public class UserService implements ServiceInterface<User> {
 
     @Override
     public void update(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
 
@@ -73,6 +71,5 @@ public class UserService implements ServiceInterface<User> {
         eventContributionRepository.unbindUserFromContributionVotes(id);
         userRepository.deleteById(id);
     }
-
 
 }

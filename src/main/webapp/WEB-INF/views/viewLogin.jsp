@@ -11,15 +11,15 @@
 <jsp:include page="elemNavbar.jsp"/>
 
 <div class="container">
-    <div class="card mt-2  mb-2">
+    <div class="card mt-2 mb-2">
         <h5 class="card-header">
             Logowanie
         </h5>
         <div class="card-body">
             <form method="post">
                 <div class="form-group">
-                    <label for="userNameId">Login</label>
-                    <input type="text" name="username" class="form-control" id="userNameId"/>
+                    <label for="userNameId">Email</label>
+                    <input type="text" name="email" class="form-control" id="userNameId"/>
                 </div>
                 <div class="form-group">
                     <label for="passwordOneId">Hasło</label>

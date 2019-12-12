@@ -12,7 +12,7 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item">
-                <a class="nav-link" href="/markers/add">Dodaj spocik</a>
+                <a class="nav-link" href="/markers/add">Dodaj spot</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button"
@@ -61,8 +61,8 @@
 <%--login form--%>
                         <form action="/login" method="post" class="px-4 py-3">
                             <div class="form-group">
-                                <label for="loginUsername">Login</label>
-                                <input type="text" class="form-control" id="loginUsername" name="username"/>
+                                <label for="loginUsername">Email</label>
+                                <input type="text" class="form-control" id="loginUsername" name="email"/>
                             </div>
                             <div class="form-group">
                                 <label for="loginPassword">Hasło</label>

@@ -17,11 +17,6 @@
             <form:form method="post" modelAttribute="user">
                 <form:hidden path="registrationDate"/>
                 <div class="form-group">
-                    <label for="userNameId">Login</label>
-                    <form:input path="username" cssClass="form-control" id="userNameId"/>
-                    <form:errors path="username" element="small" cssStyle="color:red"/>
-                </div>
-                <div class="form-group">
                     <label for="firstNameId">Imię</label>
                     <form:input path="firstName" cssClass="form-control" id="firstNameId"/>
                     <form:errors path="firstName" element="small" cssStyle="color:red"/>

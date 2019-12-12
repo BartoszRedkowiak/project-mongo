@@ -1,10 +1,8 @@
 package org.mongo.projectmongo.user;
 
-import org.hibernate.Hibernate;
 import org.mongo.projectmongo.category.Category;
 import org.mongo.projectmongo.category.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,9 +11,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -24,6 +20,7 @@ public class UserController {
 
     private final UserService userService;
     private final CategoryService categoryService;
+
     @Autowired
     public UserController(UserService userService, CategoryService categoryService) {
         this.userService = userService;
@@ -32,7 +29,7 @@ public class UserController {
 
     @GetMapping("/profile")
     public String userProfile(@AuthenticationPrincipal CurrentUser customUser,
-                              Model model){
+                              Model model) {
         //TODO optymalizacja - rozwiązanie problemu lazy initialization przez spring security
         User user = userService.getOne(customUser.getUser().getId());
 
@@ -41,13 +38,13 @@ public class UserController {
     }
 
     @GetMapping("/list")
-    public String usersList(Model model){
+    public String usersList(Model model) {
         model.addAttribute("users", userService.getAll());
         return "viewUserList";
     }
 
     @GetMapping("/register")
-    public String add(Model model){
+    public String add(Model model) {
         model.addAttribute("user", new User());
 //        model.addAttribute("mainCategories", categoryService.getMainCategories());
         return "viewUser";
@@ -56,8 +53,8 @@ public class UserController {
     @PostMapping("/register")
     public String add(@Valid User user,
                       BindingResult result,
-                      HttpServletRequest request){
-        if (result.hasErrors()){
+                      HttpServletRequest request) {
+        if (result.hasErrors()) {
             return "viewUser";
         }
 
@@ -66,7 +63,12 @@ public class UserController {
         User existingUser = userService.getOneByEmail(user.getEmail());
         if (existingUser != null) {
             result.addError(new FieldError("user", "email",
-                    "Istnieje już konto o podanym adresie email"));
+                    "Nie można zarejestrować konta na podany adres email"));
+            return "viewUser";
+        }
+        if (!user.getPassword().equals(secondPassInput)) {
+            result.addError(new FieldError("user", "password",
+                    "Podane hasła nie są zgodne"));
             return "viewUser";
         }
 
@@ -82,51 +84,49 @@ public class UserController {
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable Long id,
-                       Model model){
+                       Model model) {
         model.addAttribute("user", userService.getOne(id));
         return "viewUser";
     }
 
     @PostMapping("/edit/{id}")
     public String edit(@Valid User user,
-                       BindingResult result){
-        if (result.hasErrors()){
+                       BindingResult result,
+                       @PathVariable Long id) {
+        if (result.hasErrors()) {
             return "viewUser";
         }
+
+        User existingUser = userService.getOneByEmail(user.getEmail());
+        if (existingUser != null) {
+            result.addError(new FieldError("user", "email",
+                    "Nie można zarejestrować konta na podany adres email"));
+            return "viewUser";
+        }
+
         userService.update(user);
         return "redirect:../profile";
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable Long id){
+    public String delete(@PathVariable Long id) {
         userService.delete(id);
         return "redirect:../list";
     }
 
     @ModelAttribute("mainCategories")
-    public List<Category> categories(){ return categoryService.getMainCategories();  }
+    public List<Category> categories() {
+        return categoryService.getMainCategories();
+    }
 
     @ModelAttribute("userLogin")
-    public User user(){ return new User(); }
+    public User user() {
+        return new User();
+    }
 
     @ModelAttribute("categories")
     public List<Category> navbarCategories() {
         return categoryService.getSubCategories();
     }
-
-    @GetMapping("/admin")
-    @ResponseBody
-    public String admin(@AuthenticationPrincipal CurrentUser customUser) {
-        User entityUser = customUser.getUser();
-        return "Hello " + entityUser.getUsername();
-    }
-
-
-
-
-
-
-
-
 
 }

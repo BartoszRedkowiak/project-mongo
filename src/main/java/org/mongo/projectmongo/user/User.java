@@ -31,9 +31,6 @@ public class User {
     @Column(unique = true, nullable = false)
     private String email;
 
-    @Column(nullable = false, unique = true)
-    private String username;
-
     @Size(min = 5, message = "Pole musi zawierać przynajmniej 5 znaków")
     @Column(nullable = false)
     private String password;
@@ -154,11 +151,4 @@ public class User {
         this.roles = roles;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 }
