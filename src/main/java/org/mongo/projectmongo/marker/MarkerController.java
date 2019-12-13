@@ -148,21 +148,21 @@ public class MarkerController {
                          BindingResult result,
                          @PathVariable(name = "id") Long markerId,
                          HttpSession session,
-                         Model model){
+                         Model model,
+                         @AuthenticationPrincipal CurrentUser currentUser){
 
         if (result.hasErrors()){
             addAttributesToView(model, markerId);
             return "viewContributions";
         }
-
-        Long userId = (Long) session.getAttribute("userId");
-        if (userId == null){
+        User user = currentUser.getUser();
+        if (user == null){
             return "redirect:../../login";
         }
 
         contribution.setIgLink(contribution.getIgLink().trim());
 
-        contribution.setUser(userService.getOne(userId));
+        contribution.setUser(user);
         contribution.setMarker(markerService.getOne(markerId));
 
         eventContributionService.save(contribution);
@@ -173,12 +173,13 @@ public class MarkerController {
     @PostMapping("tricks/{id}/vote")
     public String voteForContribution(@PathVariable(name = "id") Long markerId,
                                       HttpServletRequest request,
-                                      HttpSession session){
+                                      HttpSession session,
+                                      @AuthenticationPrincipal CurrentUser currentUser){
         Long contributionId = Long.parseLong(request.getParameter("contributionId"));
         EventContribution votedContribution = eventContributionService.getOne(contributionId);
 
-        Long userId = (Long) session.getAttribute("userId");
-        User user = userService.getOne(userId);
+        User user = currentUser.getUser();
+        user = userService.getOne(user.getId());
         List<User> usersThatVoted = votedContribution.getUsersThatVoted();
 
         if (usersThatVoted.contains(user)){
