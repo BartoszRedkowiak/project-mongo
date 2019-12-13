@@ -52,14 +52,12 @@
                             <td>${marker.name}</td>
                             <td>${marker.description}</td>
                             <td>
-                                    ${marker.visible == true? 'TAK' : 'NIE'}
-                                <a class="btn btn-dark btn-sm mx-1 my-1"
-                                   href="/markers/visibilityTog/${marker.id}">Toggle</a>
+                                <a class="btn ${marker.visible == true? 'btn-success' : 'btn-secondary'} btn-sm mx-1 my-1"
+                                   href="/markers/visibilityTog/${marker.id}">${marker.visible == true? 'TAK' : 'NIE'}</a>
                             </td>
                             <td>
-                                    ${marker.activeEvent == true? 'TAK' : 'NIE'}
-                                <a class="btn btn-dark btn-sm mx-1 my-1"
-                                   href="/markers/eventTog/${marker.id}">Toggle</a>
+                                <a class="btn ${marker.activeEvent == true? 'btn-success' : 'btn-secondary'} btn-sm mx-1 my-1"
+                                   href="/markers/eventTog/${marker.id}">${marker.activeEvent == true? 'TAK' : 'NIE'}</a>
                             </td>
                             <td>${fn:length(marker.markerEdits)}</td>
                             <td>

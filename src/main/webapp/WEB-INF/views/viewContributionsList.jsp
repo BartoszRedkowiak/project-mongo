@@ -12,7 +12,7 @@
 
 <div class="container-fluid mt-1 mx-1">
     <div class="card mt-2">
-        <h5 class="card-header">Lista kontrybucji(trików)</h5>
+        <h5 class="card-header">Lista kontrybucji (trików)</h5>
         <div class="card-body">
             <table class="table table-sm table-hover table-responsive-sm">
                 <thead class="thead-dark">
@@ -22,7 +22,7 @@
                     <th scope="col">Nazwa</th>
                     <th scope="col">Użytkownik</th>
                     <th scope="col">Marker Id</th>
-                    <th scope="col">Zweryfikowano</th>
+                    <th scope="col">Widoczne</th>
                     <th scope="col">Akcje</th>
                 </tr>
                 </thead>
@@ -35,15 +35,14 @@
                         <td>${contribution.user.email}</td>
                         <td>${contribution.marker.id}</td>
                         <td>
-                                ${contribution.validated == true? 'TAK' : 'NIE'}
-                            <a class="btn btn-dark btn-sm ml-1 my-1" href="/contributions/validate/${contribution.id}">Toggle</a>
+                            <a class="btn ${contribution.validated == true? 'btn-success' : 'btn-secondary'} btn-sm ml-1 my-1" href="/contributions/validate/${contribution.id}">${contribution.validated == true? 'TAK' : 'NIE'}</a>
                         </td>
                         <td>
                             <div class="row">
                                 <a class="btn btn-primary btn-sm mx-1 my-1"
-                                   href="/contributions/view/${contribution.id}">Sprawdź</a> <br>
+                                   href="#">Sprawdź</a> <br>
                                 <a class="btn btn-warning btn-sm mx-1 my-1"
-                                   href="/contributions/edit/${contribution.id}">Edytuj</a> <br>
+                                   href="#">Edytuj</a> <br>
                                 <a class="btn btn-danger btn-sm mx-1 my-1"
                                    onclick="confirmDelete(${contribution.id}, '/contributions/delete/')">Usuń</a>
                             </div>

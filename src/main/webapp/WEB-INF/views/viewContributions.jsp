@@ -5,10 +5,25 @@
 <html>
 <head>
     <jsp:include page="elemHeadLinks.jsp"/>
+    <script src="<c:url value="/resources/js/viewContributions.js"/>"></script>
 </head>
 <body>
 
 <jsp:include page="elemNavbar.jsp"/>
+
+    <div class="container">
+        <div class="card mt-2">
+            <h3 class="card-header">${marker.name}
+                <a href="/markers/details/${marker.id}" class="btn btn-primary float-right" >Szczegóły</a>
+            </h3>
+            <c:if test="${empty contributions}">
+            <div class="card-body">
+                <span>Brak triczków dla spotu :(</span>
+            </div>
+            </c:if>
+        </div>
+    </div>
+
 
 <c:if test="${not empty param.votingFailed}">
     <div class="container mt-2">
@@ -47,7 +62,7 @@
                                         placeholder="np. Fakie 360 Bigspin"/>
                             <form:errors path="name" element="small" cssStyle="color:red"/>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 mt-1">
                             <label for="linkInput">Dodaj link do filmu na instagramie:</label>
                             <form:input path="igLink" cssClass="form-control" type="text" id="linkInput"
                                         placeholder="Wzór linku: https://www.instagram.com/p/indywidualnyKodFilmu/"/>
@@ -65,15 +80,13 @@
 </c:if>
 
 <div class="container mt-2">
-    <c:forEach items="${contributions}" var="contribution">
+    <c:forEach items="${contributions}" var="contribution" varStatus="status">
         <div class="card mt-1">
-            <h5 class="card-header">
-                    ${contribution.name}
-            </h5>
+            <h5 class="card-header">${contribution.name}</h5>
             <div class="card-body">
-                <div class="card-subtitle mt-1">
+                <div class="card-subtitle">
                     Dodane przez: ${empty contribution.user? 'Użytkownik usunięty' : contribution.user.fullName}<br>
-                    Liczba głosów: ${contribution.votes}
+                    Liczba głosów: <span class="voteValue" data-index="${status.index}">${contribution.votes}</span>
                     <c:if test="${marker.activeEvent == true}">
                         <form method="post" action="/markers/tricks/${marker.id}/vote">
                             <input type="text" value="${contribution.id}" name="contributionId" hidden/>
@@ -92,15 +105,7 @@
         </div>
     </c:forEach>
 </div>
-<c:if test="${empty contributions}">
-    <div class="container">
-        <div class="card mt-2">
-            <div class="card-body">
-                Brak triczków dla spotu :(
-            </div>
-        </div>
-    </div>
-</c:if>
+
 </body>
 </html>
 

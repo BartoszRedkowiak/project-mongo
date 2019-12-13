@@ -1,10 +1,16 @@
-
 #map {
     height: 600px;
     width: 100%;
 }
-
-#map .centerMarker {
+#mapHome {
+    height: 915px;
+    width: 100%;
+}
+#mapMarker {
+    height: 700px;
+    width: 100%;
+}
+#mapMarker .centerMarker {
     position: absolute;
     /*url of the marker*/
     background: url(http://maps.gstatic.com/mapfiles/markers2/marker.png) no-repeat;
@@ -24,3 +30,12 @@
 body {
     background-color: #EAEAEA;
 }
+
+#leaderCard {
+    background-color: #FFD894;
+}
+
+#leaderHeader {
+    background-color: #B38434;
+}
+

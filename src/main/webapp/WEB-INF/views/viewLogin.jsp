@@ -11,22 +11,23 @@
 <jsp:include page="elemNavbar.jsp"/>
 
 <div class="container">
-    <div class="card mt-2  mb-2">
+    <div class="card mt-2 mb-2">
         <h5 class="card-header">
             Logowanie
         </h5>
         <div class="card-body">
-            <form:form method="post" modelAttribute="user">
+            <form method="post">
                 <div class="form-group">
-                    <label for="emailId">Email</label>
-                    <form:input path="email" cssClass="form-control" id="emailId"/>
+                    <label for="userNameId">Email</label>
+                    <input type="text" name="email" class="form-control" id="userNameId"/>
                 </div>
                 <div class="form-group">
                     <label for="passwordOneId">Hasło</label>
-                    <form:password path="password" cssClass="form-control" id="passwordOneId"/>
+                    <input type="password" name="password" class="form-control" id="passwordOneId"/>
                 </div>
                 <input class="btn btn-dark" type="submit" value="Zapisz"/>
-            </form:form>
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            </form>
         </div>
     </div>
 </div>
