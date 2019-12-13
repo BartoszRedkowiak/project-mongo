@@ -3,6 +3,7 @@ package org.mongo.projectmongo.user;
 import org.mongo.projectmongo.category.Category;
 import org.mongo.projectmongo.eventContribution.EventContribution;
 import org.mongo.projectmongo.review.Review;
+import org.mongo.projectmongo.security.Role;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -10,6 +11,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="users")
@@ -32,6 +34,12 @@ public class User {
     @Size(min = 5, message = "Pole musi zawierać przynajmniej 5 znaków")
     @Column(nullable = false)
     private String password;
+
+    private int enabled;
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
 
     @NotEmpty
     @Column(nullable = false)
@@ -127,5 +135,20 @@ public class User {
         return firstName + " " + lastName;
     }
 
+    public int getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(int enabled) {
+        this.enabled = enabled;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 
 }

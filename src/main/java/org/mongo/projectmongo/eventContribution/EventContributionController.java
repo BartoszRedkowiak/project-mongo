@@ -31,7 +31,6 @@ public class EventContributionController {
         model.addAttribute("contributions", contributionService.getAllFromLatest());
         return "viewContributionsList";
     }
-
     @GetMapping("/validate/{id}")
     private String validate(@PathVariable Long id){
         EventContribution contribution = contributionService.getOne(id);

@@ -35,9 +35,6 @@ public class HomeController {
                            @RequestParam(required = false, name = "categoryId") List<Long> catIdList,
                            Model model,
                            HttpSession session) {
-        //TODO tymczasowe ustawienie
-        session.setAttribute("userId", 1l);
-
         if (maxDistance == null) {
             model.addAttribute("markers", markerService.getAllVisible());
         } else {
@@ -51,17 +48,14 @@ public class HomeController {
 
 
     @GetMapping("/login")
-    public String login(Model model){
-        model.addAttribute("user", new User());
-
+    public String login(){
         return "viewLogin";
     }
 
-    @PostMapping("/login")
-    public String loginVerification(){
-        return "redirect:/";
+    @GetMapping("/logoutSuccess")
+    public String logoutHandler(){
+        return "viewLogout";
     }
-
 
 
     @ModelAttribute("userLogin")
