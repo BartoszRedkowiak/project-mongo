@@ -35,7 +35,7 @@ java -jar project-mongo-0.0.1-SNAPSHOT.war
 Example:
 ```
 java -jar charity-0.0.1-SNAPSHOT.war 
---spring.datasource.url=jdbc:mysql://localhost:3306/charity_donation?serverTimezone=UTC, 
+--spring.datasource.url=jdbc:mysql://localhost:3306/mongo?serverTimezone=UTC, 
 --spring.datasource.username=root, 
 --spring.datasource.password=confidentialpassword
 ```
