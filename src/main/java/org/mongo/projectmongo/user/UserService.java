@@ -59,8 +59,20 @@ public class UserService implements ServiceInterface<User> {
 
     @Override
     public void update(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
+
+        User userToUpdate = getOne(user.getId());
+        userToUpdate.setFirstName(user.getFirstName());
+        userToUpdate.setLastName(user.getLastName());
+        userToUpdate.setEmail(user.getEmail());
+        userToUpdate.setSportTypes(user.getSportTypes());
+
+        String passwordDatabase = userToUpdate.getPassword();
+        String passwordInput = user.getPassword();
+        if (!passwordEncoder.matches(passwordInput, passwordDatabase)){
+            userToUpdate.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
+
+        userRepository.save(userToUpdate);
     }
 
     @Override

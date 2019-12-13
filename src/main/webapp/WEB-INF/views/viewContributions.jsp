@@ -11,6 +11,20 @@
 
 <jsp:include page="elemNavbar.jsp"/>
 
+    <div class="container">
+        <div class="card mt-2">
+            <h3 class="card-header">${marker.name}
+                <a href="/markers/details/${marker.id}" class="btn btn-primary float-right" >Szczegóły</a>
+            </h3>
+            <c:if test="${empty contributions}">
+            <div class="card-body">
+                <span>Brak triczków dla spotu :(</span>
+            </div>
+            </c:if>
+        </div>
+    </div>
+
+
 <c:if test="${not empty param.votingFailed}">
     <div class="container mt-2">
         <div class="card">
@@ -91,16 +105,7 @@
         </div>
     </c:forEach>
 </div>
-<c:if test="${empty contributions}">
-    <div class="container">
-        <div class="card mt-2">
-            <div class="card-body">
-                <span>Brak triczków dla spotu :(</span>
-                <br><a href="/markers/details/${marker.id}" class="btn btn-primary">Powrót</a>
-            </div>
-        </div>
-    </div>
-</c:if>
+
 </body>
 </html>
 
